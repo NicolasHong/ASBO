@@ -1,0 +1,19 @@
+/.history 
+# ignore /.history dir
+/.ipynb_checkpoints 
+# ignore /.ipynb_checkpoints dir
+/.vscode
+# ignore /.vscode dir
+
+**/__pycache__ 
+# ignore /__pycache__  a/__pycache__ a/b/__pycache__
+
+*.png 
+# ignore all .png file
+
+*.DS_Store 
+# ignore all .DS_Store file
+*.code-workspace 
+
+private_case5/
+# ingore case5

@@ -1,0 +1,1413 @@
+MM "37.0" FLAVOR "NO" VERSION "37.0" DATETIME "Thu May 23 19:29:55 2024" 
+MACHINE "WIN-NT/VC"  ; 
+startlibrary
+version1
+NumLibs = 2
+Built-In
+ACM Built-In
+NumCats = 13
+Streams
+active
+Mixers/Splitters
+active
+Separators
+active
+Exchangers
+active
+Columns
+active
+Reactors
+active
+Pressure Changers
+active
+Manipulators
+active
+Solids
+active
+Solids Separators
+active
+Controllers
+active
+Batch Models
+active
+User Models
+active
+endlibrary
+; 
+2
+>VERSION 0
+COLUMN
+RadFrac
+Built-In
+RADFRAC
+>VERSION 0
+COL-REC
+RadFrac
+Built-In
+RADFRAC
+? SETUP MAIN ? \ "RUN-CLASS" RUN-CLASS = FLOWSHEET \ \ SIMULATE INTERACTIVE
+ = NO MOLEFLOW = MOLEFLOW PSVUNITS = "SI" \ ? SETUP GLOBAL ? \ "IN-UNITS" 
+INSET = METCBAR \ ? SETUP DIAGNOSTICS ? ? SETUP "SIM-OPTIONS" ? ; 
+"METCBAR_MOLE" ; ? SETUP "MODEL-OPTION" ? ; "METCBAR_MOLE" ; ? SETUP 
+"CUSTOM-UOM" ? ? SETUP "UNITS-SET" METCBAR ? \ DESCRIPTION DESCRIPTION = 
+"User-defined units set" \ \ MMLOCAL \ \ UNITSET BASESET = MET ( 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 3 3 3 3 3 5 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 3 3 3 3 3 3 3 3 ) \ ? SETUP "SYS-OPTIONS" ? ? 
+SETUP "ACCOUNT-INFO" ? ? SETUP "RUN-CONTROL" ? ? SETUP DESCRIPTION ? ? 
+ODATABANKS ? \ ODATABANKS AUTO-PARAM = YES \ ? "DATA-SERVICE" ? ? DATABANKS ? 
+\ DATABANKS \ ? COMPONENTS MAIN ? \ COMPONENTS CID = "N-HEPTAN" ANAME = 
+C7H16-1 OUTNAME = "N-HEPTAN" DBNAME1 = "N-HEPTANE" ANAME1 = "C7H16-1" /  CID
+ = "TOLUE-01" ANAME = C7H8 OUTNAME = "TOLUE-01" DBNAME1 = "TOLUENE" ANAME1 = 
+"C7H8" /  CID = "PHENO-01" ANAME = C6H6O OUTNAME = "PHENO-01" DBNAME1 = 
+"PHENOL" ANAME1 = "C6H6O" /  CID = WATER ANAME = H2O OUTNAME = WATER DBNAME1
+ = "WATER" ANAME1 = "H2O" \ ? COMPONENTS "ADA/PCS" "LE-PROP-DATA" ? ; 
+"METCBAR_MOLE" ; ? COMPONENTS "ADA/PCS" "PETRO-PROP" ? ? COMPONENTS "ADA/PCS" 
+"ADA-SETUP" ? ? COMPONENTS "COMP-LIST" GLOBAL ? ? COMPONENTS "MOIST-COMPS" ? 
+? COMPONENTS "UNIFAC-GROUP" ? ? SOLVE ? \ "RUN-MODE" MODE = SIM \ ? 
+"INIT-VAR-ATT" ? ? "EO-ALIAS" ? ? SPECGROUPS ? ? CONNECTIONS ? ? "EO-OPTIONS" 
+? ? SCRIPTMETHOD ? ? "DYN-OPTIONS" ? ? FLOWSHEET GLOBAL ? \ BLOCK BLKID = 
+COLUMN BLKTYPE = RADFRAC MDLTYPE = "RadFrac" IN = ( FEED M0-1 SOLVENT M0-1 ) 
+OUT = ( "RICH-SOL" M2-3 C7 M0-1 ) \ \ BLOCK BLKID = "COL-REC" BLKTYPE = 
+RADFRAC MDLTYPE = "RadFrac" IN = ( "RICH-SOL" M0-1 ) OUT = ( TOLUENE M0-1 
+"LEAN-SOL" M2-3 ) \ ? PROPERTIES MAIN ? \ GPROPERTIES GPPROCTYPE = CHEMICAL 
+GBASEOPSET = "NRTL-RK" GOPSETNAME = "NRTL-RK" PARCON = -2 \ ? PROPERTIES 
+COMPARE ? ? PROPERTIES "OPTION-SETS" "NRTL-RK" ? \ PARAM BASE = "NRTL-RK" \ ? 
+PROPERTIES "NC-PROPS" ? ? PROPERTIES "MOLEC-STRUCT" "N-HEPTAN" ? ? PROPERTIES 
+"MOLEC-STRUCT" "PHENO-01" ? ? PROPERTIES "MOLEC-STRUCT" "TOLUE-01" ? ? 
+PROPERTIES "MOLEC-STRUCT" WATER ? ? PROPERTIES ESTIMATION ? ; "METCBAR_MOLE" 
+; ? PROPERTIES PARAMETERS SUMMARY ? ? PROPERTIES PARAMETERS BINARY SCALAR 
+"MLQKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MLQKIJ SETNO = 1 UNITROW
+ = 0 \ ? PROPERTIES PARAMETERS BINARY SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = RKTKIJ SETNO = 1 UNITROW = 0 \ ? PROPERTIES PARAMETERS 
+BINARY "T-DEPENDENT" "ANDKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = 
+ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 2 \ ? 
+PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDMIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "HENRY-1" ? ; 
+"METCBAR_MOLE" ; \ PROP-LIST PARAMNAME = HENRY SETNO = 1 UNITROW = 20 
+UNITLABEL = bar TUNITROW = 22 TUNITLABEL = C BDBANK = ( "APV110 ENRTL-RK" 
+"APV110 BINARY" "APV110 HENRY-AP" ) NEL = 7 \ ? PROPERTIES PARAMETERS BINARY 
+"T-DEPENDENT" "MUKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO
+ = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 6 \ ? PROPERTIES 
+PARAMETERS BINARY "T-DEPENDENT" "MULIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST 
+PARAMNAME = MULIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 11 
+\ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "NRTL-1" ? ; "METCBAR_MOLE" ; 
+\ PROP-LIST PARAMNAME = NRTL SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = C BDBANK = ( "APV110 ENRTL-RK" "APV110 VLE-RK" "APV110 LLE-ASPEN" ) NEL = 
+12 \ \ BPVAL PARAMNAME2 = NRTL CID1 = "N-HEPTAN" CID2 = "TOLUE-01" UNITROW2
+ = 0 TUNITROW2 = 22 TUNITLABEL2 = C VAL1 = "APV110 VLE-RK" VAL2 = 
+"APV110 VLE-RK" VAL3 = "APV110 VLE-RK" VAL4 = "APV110 VLE-RK" VAL5 = 
+"APV110 VLE-RK" VAL6 = "APV110 VLE-RK" VAL7 = "APV110 VLE-RK" VAL8 = 
+"APV110 VLE-RK" VAL9 = "APV110 VLE-RK" VAL10 = "APV110 VLE-RK" VAL11 = 
+"APV110 VLE-RK" VAL12 = "APV110 VLE-RK" /  PARAMNAME2 = NRTL CID1 = "N-HEPTAN" 
+CID2 = "PHENO-01" UNITROW2 = 0 TUNITROW2 = 22 TUNITLABEL2 = C VAL1 = 
+"APV110 VLE-RK" VAL2 = "APV110 VLE-RK" VAL3 = "APV110 VLE-RK" VAL4 = 
+"APV110 VLE-RK" VAL5 = "APV110 VLE-RK" VAL6 = "APV110 VLE-RK" VAL7 = 
+"APV110 VLE-RK" VAL8 = "APV110 VLE-RK" VAL9 = "APV110 VLE-RK" VAL10 = 
+"APV110 VLE-RK" VAL11 = "APV110 VLE-RK" VAL12 = "APV110 VLE-RK" /  PARAMNAME2
+ = NRTL CID1 = "TOLUE-01" CID2 = "PHENO-01" UNITROW2 = 0 TUNITROW2 = 22 
+TUNITLABEL2 = C VAL1 = "APV110 VLE-RK" VAL2 = "APV110 VLE-RK" VAL3 = 
+"APV110 VLE-RK" VAL4 = "APV110 VLE-RK" VAL5 = "APV110 VLE-RK" VAL6 = 
+"APV110 VLE-RK" VAL7 = "APV110 VLE-RK" VAL8 = "APV110 VLE-RK" VAL9 = 
+"APV110 VLE-RK" VAL10 = "APV110 VLE-RK" VAL11 = "APV110 VLE-RK" VAL12 = 
+"APV110 VLE-RK" /  PARAMNAME2 = NRTL CID1 = "N-HEPTAN" CID2 = WATER UNITROW2
+ = 0 TUNITROW2 = 22 TUNITLABEL2 = C VAL1 = "APV110 LLE-ASPEN" VAL2 = 
+"APV110 LLE-ASPEN" VAL3 = "APV110 LLE-ASPEN" VAL4 = "APV110 LLE-ASPEN" VAL5 = 
+"APV110 LLE-ASPEN" VAL6 = "APV110 LLE-ASPEN" VAL7 = "APV110 LLE-ASPEN" VAL8 = 
+"APV110 LLE-ASPEN" VAL9 = "APV110 LLE-ASPEN" VAL10 = "APV110 LLE-ASPEN" VAL11 
+= "APV110 LLE-ASPEN" VAL12 = "APV110 LLE-ASPEN" /  PARAMNAME2 = NRTL CID1 = 
+"TOLUE-01" CID2 = WATER UNITROW2 = 0 TUNITROW2 = 22 TUNITLABEL2 = C VAL1 = 
+"APV110 VLE-RK" VAL2 = "APV110 VLE-RK" VAL3 = "APV110 VLE-RK" VAL4 = 
+"APV110 VLE-RK" VAL5 = "APV110 VLE-RK" VAL6 = "APV110 VLE-RK" VAL7 = 
+"APV110 VLE-RK" VAL8 = "APV110 VLE-RK" VAL9 = "APV110 VLE-RK" VAL10 = 
+"APV110 VLE-RK" VAL11 = "APV110 VLE-RK" VAL12 = "APV110 VLE-RK" /  PARAMNAME2
+ = NRTL CID1 = "PHENO-01" CID2 = WATER UNITROW2 = 0 TUNITROW2 = 22 
+TUNITLABEL2 = C VAL1 = "APV110 VLE-RK" VAL2 = "APV110 VLE-RK" VAL3 = 
+"APV110 VLE-RK" VAL4 = "APV110 VLE-RK" VAL5 = "APV110 VLE-RK" VAL6 = 
+"APV110 VLE-RK" VAL7 = "APV110 VLE-RK" VAL8 = "APV110 VLE-RK" VAL9 = 
+"APV110 VLE-RK" VAL10 = "APV110 VLE-RK" VAL11 = "APV110 VLE-RK" VAL12 = 
+"APV110 VLE-RK" \ ? PROPERTIES "ATTR-COMPS" ? ? POLYMERS ? ? "ATTR-SCALING" ? 
+; "METCBAR_MOLE" ; ? "STREAM-CLASS" SUBSTREAMS ? \ DEF-SUBS-CLA SUBSTREAMS = 
+MIXED \ \ DEF-SUBS-CLA SUBSTREAMS = CISOLID \ \ DEF-SUBS-CLA SUBSTREAMS = NC 
+\ \ DEF-SUBS-CLA SUBSTREAMS = NCPSD \ \ DEF-SUBS-CLA SUBSTREAMS = CIPSD \ ? 
+"STREAM-CLASS" "STREAM-CLASS" ? \ DEFINITION SCLASS = CONVEN \ \ DEFINITION 
+SCLASS = MIXNC \ \ DEFINITION SCLASS = MIXCISLD \ \ DEFINITION SCLASS = 
+MIXNCPSD \ \ DEFINITION SCLASS = MIXCIPSD \ \ DEFINITION SCLASS = MIXCINC \ \ 
+DEFINITION SCLASS = MCINCPSD \ \ HEAT-DEFINE H-SCLASS = HEAT STREAM-ATTR = 
+HEAT \ \ HEAT-DEFINE H-SCLASS = LOAD STREAM-ATTR = LOAD \ ? "STREAM-CLASS" 
+"DEF-STREAMS" ? ? "STREAM-NAMES" ? ? "STREAM-GROUP" All ? \ DESCRIPTION 
+DESCRIPTION = "All streams" \ ? "STREAM-GROUP" Boundary ? \ DESCRIPTION 
+DESCRIPTION = "Boundary streams" \ ? "STREAM-GROUP" Charge ? \ DESCRIPTION 
+DESCRIPTION = "Charge streams" \ ? "STREAM-GROUP" Feeds ? \ DESCRIPTION 
+DESCRIPTION = "Feed streams" \ ? "STREAM-GROUP" Initial ? \ DESCRIPTION 
+DESCRIPTION = "Streams with user-specified values entered" \ ? "STREAM-GROUP" 
+Products ? \ DESCRIPTION DESCRIPTION = "Product streams" \ ? "STREAM-GROUP" 
+Tears ? \ DESCRIPTION DESCRIPTION = 
+"Tear streams manipulated by the convergence algorithms" \ ? STREAM MATERIAL 
+C7 ? ; "METCBAR_MOLE" ; \ SUBSTREAM SSID = MIXED TOTAL = 0. <0> <0> \ \ 
+"SS-FLOWEMBED" SSXML = ( 
+"<tffString><GroupName>默认</GroupName><TemplateName>Full</TemplateName" 
+"><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplate" 
+"GlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarch" 
+"yStreams>false</IncludesChildHierarchyStreams><CommonShellSettings>&lt" 
+";srcSettings$StreamIds=""C7""$TemplateName=""Full""&gt;&lt;TFFTable&gt;&lt" 
+";GeneralOptions&gt;Description,SourceAndDestination,StreamClass,Maximu" 
+"mErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleSizeDi" 
+"stributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFractio" 
+"n,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,MassVapor" 
+"Fraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEntropy" 
+",MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&lt;/G" 
+"eneralOptions&gt;&lt;ScopeOptions&gt;PhasesForMixedSubstream,TotalStre" 
+"am,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,VolumeFl" 
+"ows&lt;/ScopeOptions&gt;&lt;Properties&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""TEMP""$/&gt;&lt;Property$Type=""StateConditio" 
+"nProperty""$EngineName=""PRES""$/&gt;&lt;Property$Type=""StateConditionPro" 
+"perty""$EngineName=""VFRAC""$/&gt;&lt;Property$Type=""StateConditionProper" 
+"ty""$EngineName=""LFRAC""$/&gt;&lt;Property$Type=""StateConditionProperty""" 
+"$EngineName=""SFRAC""$/&gt;&lt;Property$Type=""StateConditionProperty""$En" 
+"gineName=""MASSVFRA""$/&gt;&lt;Property$Type=""StateConditionProperty""$En" 
+"gineName=""MASSLFRA""$/&gt;&lt;Property$Type=""StateConditionProperty""$En" 
+"gineName=""MASSSFRA""$/&gt;&lt;Property$Type=""StateConditionProperty""$En" 
+"gineName=""HMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineN" 
+"ame=""MASSHMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineNa" 
+"me=""SMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""M" 
+"ASSSMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""RH" 
+"OMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MASSR" 
+"HOM""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""HFLMX" 
+"""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MWMX""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MOLEFLOW""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MOLEFRAC""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MASSFLOW""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MASSFRAC""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""VOLFLMX""$/&g" 
+"t;&lt;Property$Type=""BatchProperty""$EngineName=""cmole_cycle""$/&gt;&lt;" 
+"Property$Type=""BatchProperty""$EngineName=""cmole_time""$/&gt;&lt;Propert" 
+"y$Type=""BatchProperty""$EngineName=""cmass_cycle""$/&gt;&lt;Property$Type" 
+"=""BatchProperty""$EngineName=""cmass_time""$/&gt;&lt;Property$Type=""Batch" 
+"Property""$EngineName=""vol_cycle""$/&gt;&lt;Property$Type=""BatchProperty" 
+"""$EngineName=""vol_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineN" 
+"ame=""enth_cycle""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""en" 
+"th_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cycle_time" 
+"""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""oper_time""$/&gt;&" 
+"lt;Property$Type=""BatchProperty""$EngineName=""ntrain""$/&gt;&lt;/Propert" 
+"ies&gt;&lt;/TFFTable&gt;&lt;/srcSettings&gt;</CommonShellSettings></tf" 
+"fString>" ) \ ? STREAM MATERIAL FEED ? ; "METCBAR_MOLE" ; \ SUBSTREAM SSID
+ = MIXED PRES = 1. <20> <5> VFRAC = 0.5 <0> <0> BASIS = "MOLE-FRAC" TOTFLOW
+ = 100. <-89> <3> MIXED-SPEC = PV TOTAL = 1. <-4> <0> JUNK = 2 \ \ MOLE-FLOW 
+SSID1 = MIXED CID = "N-HEPTAN" FLOW = 0.5 <-4> <0> /  SSID1 = MIXED CID = 
+"TOLUE-01" FLOW = 0.5 <-4> <0> \ ? STREAM MATERIAL SOLVENT ? ; "METCBAR_MOLE" 
+; \ SUBSTREAM SSID = MIXED TEMP = 181. <22> <4> PRES = 1. <20> <5> BASIS = 
+"MOLE-FRAC" TOTFLOW = 53.452 <-89> <3> TOTAL = 1. <-89> <0> JUNK = 1 \ \ 
+MOLE-FLOW SSID1 = MIXED CID = "PHENO-01" FLOW = 1. <-4> <0> \ ? STREAM 
+MATERIAL TOLUENE ? ; "METCBAR_MOLE" ; \ SUBSTREAM SSID = MIXED TOTAL = 0. <0> 
+<0> \ \ "SS-FLOWEMBED" SSXML = ( 
+"<tffString><GroupName>默认</GroupName><TemplateName>Full</TemplateName" 
+"><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplate" 
+"GlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarch" 
+"yStreams>false</IncludesChildHierarchyStreams><CommonShellSettings>&lt" 
+";srcSettings$StreamIds=""TOLUENE""$TemplateName=""Full""&gt;&lt;TFFTable&g" 
+"t;&lt;GeneralOptions&gt;Description,SourceAndDestination,StreamClass,M" 
+"aximumErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleS" 
+"izeDistributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFr" 
+"action,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,Mass" 
+"VaporFraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEn" 
+"tropy,MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&" 
+"lt;/GeneralOptions&gt;&lt;ScopeOptions&gt;PhasesForMixedSubstream,Tota" 
+"lStream,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,Vol" 
+"umeFlows&lt;/ScopeOptions&gt;&lt;Properties&gt;&lt;Property$Type=""Stat" 
+"eConditionProperty""$EngineName=""TEMP""$/&gt;&lt;Property$Type=""StateCon" 
+"ditionProperty""$EngineName=""PRES""$/&gt;&lt;Property$Type=""StateConditi" 
+"onProperty""$EngineName=""VFRAC""$/&gt;&lt;Property$Type=""StateConditionP" 
+"roperty""$EngineName=""LFRAC""$/&gt;&lt;Property$Type=""StateConditionProp" 
+"erty""$EngineName=""SFRAC""$/&gt;&lt;Property$Type=""StateConditionPropert" 
+"y""$EngineName=""MASSVFRA""$/&gt;&lt;Property$Type=""StateConditionPropert" 
+"y""$EngineName=""MASSLFRA""$/&gt;&lt;Property$Type=""StateConditionPropert" 
+"y""$EngineName=""MASSSFRA""$/&gt;&lt;Property$Type=""StateConditionPropert" 
+"y""$EngineName=""HMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$En" 
+"gineName=""MASSHMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$Eng" 
+"ineName=""SMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineNa" 
+"me=""MASSSMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineNam" 
+"e=""RHOMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""" 
+"MASSRHOM""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""" 
+"HFLMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MWM" 
+"X""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MOLEFLO" 
+"W""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MOLEFRA" 
+"C""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MASSFLO" 
+"W""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""MASSFRA" 
+"C""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""VOLFLMX" 
+"""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cmole_cycle""$/&gt" 
+";&lt;Property$Type=""BatchProperty""$EngineName=""cmole_time""$/&gt;&lt;Pr" 
+"operty$Type=""BatchProperty""$EngineName=""cmass_cycle""$/&gt;&lt;Property" 
+"$Type=""BatchProperty""$EngineName=""cmass_time""$/&gt;&lt;Property$Type=""" 
+"BatchProperty""$EngineName=""vol_cycle""$/&gt;&lt;Property$Type=""BatchPro" 
+"perty""$EngineName=""vol_time""$/&gt;&lt;Property$Type=""BatchProperty""$En" 
+"gineName=""enth_cycle""$/&gt;&lt;Property$Type=""BatchProperty""$EngineNam" 
+"e=""enth_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cycle" 
+"_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""oper_time""$/" 
+"&gt;&lt;Property$Type=""BatchProperty""$EngineName=""ntrain""$/&gt;&lt;/Pr" 
+"operties&gt;&lt;/TFFTable&gt;&lt;/srcSettings&gt;</CommonShellSettings" 
+"></tffString>" ) \ ? "EO-VARS" ? \ "SS-FLOWEMBED" SSXML = ( 
+"<tffString><GroupName>全部</GroupName><TemplateName>Full</TemplateName" 
+"><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplate" 
+"GlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarch" 
+"yStreams>false</IncludesChildHierarchyStreams><CommonShellSettings>&lt" 
+";srcSettings$StreamIds=""C7,FEED,LEAN-SOL,RICH-SOL,SOLVENT,TOLUENE""$Tem" 
+"plateName=""Full""&gt;&lt;TFFTable&gt;&lt;GeneralOptions&gt;Description," 
+"SourceAndDestination,StreamClass,MaximumErrorTolerance,CostFlow,PhaseL" 
+"abel,ComponentAttributes,ParticleSizeDistributions,Temperature,Pressur" 
+"e,MolarVaporFraction,MolarLiquidFraction,MolarSolidFraction,MolarEntha" 
+"lpy,MolarEntropy,MolarDensity,MassVaporFraction,MassLiquidFraction,Mas" 
+"sSolidFraction,MassEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,Avera" 
+"geMolecularWeight,BatchProperties&lt;/GeneralOptions&gt;&lt;ScopeOptio" 
+"ns&gt;PhasesForMixedSubstream,TotalStream,Substreams,MoleFlows,MassFlo" 
+"ws,MoleFractions,MassFractions,VolumeFlows&lt;/ScopeOptions&gt;&lt;Pro" 
+"perties&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""TEMP" 
+"""$/&gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""PRES""$/&" 
+"gt;&lt;Property$Type=""StateConditionProperty""$EngineName=""VFRAC""$/&gt;" 
+"&lt;Property$Type=""StateConditionProperty""$EngineName=""LFRAC""$/&gt;&lt" 
+";Property$Type=""StateConditionProperty""$EngineName=""SFRAC""$/&gt;&lt;Pr" 
+"operty$Type=""StateConditionProperty""$EngineName=""MASSVFRA""$/&gt;&lt;Pr" 
+"operty$Type=""StateConditionProperty""$EngineName=""MASSLFRA""$/&gt;&lt;Pr" 
+"operty$Type=""StateConditionProperty""$EngineName=""MASSSFRA""$/&gt;&lt;Pr" 
+"operty$Type=""StateConditionProperty""$EngineName=""HMX""$/&gt;&lt;Propert" 
+"y$Type=""StateConditionProperty""$EngineName=""MASSHMX""$/&gt;&lt;Property" 
+"$Type=""StateConditionProperty""$EngineName=""SMX""$/&gt;&lt;Property$Type" 
+"=""StateConditionProperty""$EngineName=""MASSSMX""$/&gt;&lt;Property$Type=" 
+"""StateConditionProperty""$EngineName=""RHOMX""$/&gt;&lt;Property$Type=""St" 
+"ateConditionProperty""$EngineName=""MASSRHOM""$/&gt;&lt;Property$Type=""St" 
+"ateConditionProperty""$EngineName=""HFLMX""$/&gt;&lt;Property$Type=""State" 
+"ConditionProperty""$EngineName=""MWMX""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""MOLEFLOW""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""MOLEFRAC""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""MASSFLOW""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""MASSFRAC""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""VOLFLMX""$/&gt;&lt;Property$Type=""BatchPrope" 
+"rty""$EngineName=""cmole_cycle""$/&gt;&lt;Property$Type=""BatchProperty""$E" 
+"ngineName=""cmole_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineNa" 
+"me=""cmass_cycle""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cm" 
+"ass_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""vol_cycle" 
+"""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""vol_time""$/&gt;&l" 
+"t;Property$Type=""BatchProperty""$EngineName=""enth_cycle""$/&gt;&lt;Prope" 
+"rty$Type=""BatchProperty""$EngineName=""enth_time""$/&gt;&lt;Property$Type" 
+"=""BatchProperty""$EngineName=""cycle_time""$/&gt;&lt;Property$Type=""Batch" 
+"Property""$EngineName=""oper_time""$/&gt;&lt;Property$Type=""BatchProperty" 
+"""$EngineName=""ntrain""$/&gt;&lt;/Properties&gt;&lt;/TFFTable&gt;&lt;/sr" 
+"cSettings&gt;</CommonShellSettings></tffString>" ) \ ? BLOCK RADFRAC "COL-REC" 
+? ; "METCBAR_MOLE" ; ; FRACT1 ; \ PARAM NSTAGE = 28 ALGORITHM = NEWTON 
+HYDRAUL = NO CONV-METH = OTHERS NSTAGEMAX = 29 \ \ PARAM2 STATIC-DP = YES \ \ 
+"COL-CONFIG" CONDENSER = "PARTIAL-V" CA-CONFIG = "INT-1" \ \ FEEDS FEED-SID
+ = "RICH-SOL" FEED-STAGE = 21 \ \ PRODUCTS PROD-STREAM = TOLUENE PROD-STAGE
+ = 1 PROD-PHASE = V P-S = N /  PROD-STREAM = "LEAN-SOL" PROD-STAGE = 28 
+PROD-PHASE = L P-S = N \ \ "P-SPEC2" PRES1 = 1. <20> <5> \ \ "COL-SPECS" 
+BASIS-RDV = 1.0 <0> <0> BASIS-D = 76.811 <-89> <3> BASIS-RR = 2.491 <-1> <0> 
+\ \ T-EST TEMP-STAGE = 1 TEMP-EST = 110.060213 <22> <4> /  TEMP-STAGE = 2 
+TEMP-EST = 110.115323 <22> <4> /  TEMP-STAGE = 3 TEMP-EST = 110.132823 <22> 
+<4> /  TEMP-STAGE = 4 TEMP-EST = 110.138361 <22> <4> /  TEMP-STAGE = 5 
+TEMP-EST = 110.140128 <22> <4> /  TEMP-STAGE = 6 TEMP-EST = 110.140726 <22> 
+<4> /  TEMP-STAGE = 7 TEMP-EST = 110.140999 <22> <4> /  TEMP-STAGE = 8 
+TEMP-EST = 110.14126 <22> <4> /  TEMP-STAGE = 9 TEMP-EST = 110.141704 <22> 
+<4> /  TEMP-STAGE = 10 TEMP-EST = 110.142595 <22> <4> /  TEMP-STAGE = 11 
+TEMP-EST = 110.14443 <22> <4> /  TEMP-STAGE = 12 TEMP-EST = 110.148229 <22> 
+<4> /  TEMP-STAGE = 13 TEMP-EST = 110.156105 <22> <4> /  TEMP-STAGE = 14 
+TEMP-EST = 110.172455 <22> <4> /  TEMP-STAGE = 15 TEMP-EST = 110.206494 <22> 
+<4> /  TEMP-STAGE = 16 TEMP-EST = 110.27777 <22> <4> /  TEMP-STAGE = 17 
+TEMP-EST = 110.428826 <22> <4> /  TEMP-STAGE = 18 TEMP-EST = 110.757098 <22> 
+<4> /  TEMP-STAGE = 19 TEMP-EST = 111.508911 <22> <4> /  TEMP-STAGE = 20 
+TEMP-EST = 113.427005 <22> <4> /  TEMP-STAGE = 21 TEMP-EST = 119.291032 <22> 
+<4> /  TEMP-STAGE = 22 TEMP-EST = 119.363012 <22> <4> /  TEMP-STAGE = 23 
+TEMP-EST = 119.561906 <22> <4> /  TEMP-STAGE = 24 TEMP-EST = 120.460242 <22> 
+<4> /  TEMP-STAGE = 25 TEMP-EST = 124.862912 <22> <4> /  TEMP-STAGE = 26 
+TEMP-EST = 142.326505 <22> <4> /  TEMP-STAGE = 27 TEMP-EST = 169.159635 <22> 
+<4> /  TEMP-STAGE = 28 TEMP-EST = 179.215379 <22> <4> \ \ L-EST L-STAGE = 1 
+L-MOLE-FLOW = 100. <11> <3> /  L-STAGE = 2 L-MOLE-FLOW = 100.002776 <11> <3> 
+/  L-STAGE = 3 L-MOLE-FLOW = 100.0037 <11> <3> /  L-STAGE = 4 L-MOLE-FLOW = 
+100.00401 <11> <3> /  L-STAGE = 5 L-MOLE-FLOW = 100.004137 <11> <3> /  
+L-STAGE = 6 L-MOLE-FLOW = 100.004237 <11> <3> /  L-STAGE = 7 L-MOLE-FLOW = 
+100.004394 <11> <3> /  L-STAGE = 8 L-MOLE-FLOW = 100.004702 <11> <3> /  
+L-STAGE = 9 L-MOLE-FLOW = 100.005335 <11> <3> /  L-STAGE = 10 L-MOLE-FLOW = 
+100.006643 <11> <3> /  L-STAGE = 11 L-MOLE-FLOW = 100.009349 <11> <3> /  
+L-STAGE = 12 L-MOLE-FLOW = 100.01495 <11> <3> /  L-STAGE = 13 L-MOLE-FLOW = 
+100.02653 <11> <3> /  L-STAGE = 14 L-MOLE-FLOW = 100.050432 <11> <3> /  
+L-STAGE = 15 L-MOLE-FLOW = 100.099587 <11> <3> /  L-STAGE = 16 L-MOLE-FLOW = 
+100.199863 <11> <3> /  L-STAGE = 17 L-MOLE-FLOW = 100.40045 <11> <3> /  
+L-STAGE = 18 L-MOLE-FLOW = 100.780036 <11> <3> /  L-STAGE = 19 L-MOLE-FLOW = 
+101.358265 <11> <3> /  L-STAGE = 20 L-MOLE-FLOW = 101.189041 <11> <3> /  
+L-STAGE = 21 L-MOLE-FLOW = 218.424822 <11> <3> /  L-STAGE = 22 L-MOLE-FLOW = 
+218.329163 <11> <3> /  L-STAGE = 23 L-MOLE-FLOW = 217.751905 <11> <3> /  
+L-STAGE = 24 L-MOLE-FLOW = 214.731192 <11> <3> /  L-STAGE = 25 L-MOLE-FLOW = 
+201.119787 <11> <3> /  L-STAGE = 26 L-MOLE-FLOW = 171.870291 <11> <3> /  
+L-STAGE = 27 L-MOLE-FLOW = 162.630868 <11> <3> /  L-STAGE = 28 L-MOLE-FLOW = 
+60. <11> <3> \ \ V-EST V-STAGE = 1 V-MOLE-FLOW = 50. <11> <3> /  V-STAGE = 2 
+V-MOLE-FLOW = 150. <11> <3> /  V-STAGE = 3 V-MOLE-FLOW = 150.002776 <11> <3> 
+/  V-STAGE = 4 V-MOLE-FLOW = 150.0037 <11> <3> /  V-STAGE = 5 V-MOLE-FLOW = 
+150.00401 <11> <3> /  V-STAGE = 6 V-MOLE-FLOW = 150.004137 <11> <3> /  
+V-STAGE = 7 V-MOLE-FLOW = 150.004237 <11> <3> /  V-STAGE = 8 V-MOLE-FLOW = 
+150.004394 <11> <3> /  V-STAGE = 9 V-MOLE-FLOW = 150.004702 <11> <3> /  
+V-STAGE = 10 V-MOLE-FLOW = 150.005335 <11> <3> /  V-STAGE = 11 V-MOLE-FLOW = 
+150.006643 <11> <3> /  V-STAGE = 12 V-MOLE-FLOW = 150.009349 <11> <3> /  
+V-STAGE = 13 V-MOLE-FLOW = 150.01495 <11> <3> /  V-STAGE = 14 V-MOLE-FLOW = 
+150.02653 <11> <3> /  V-STAGE = 15 V-MOLE-FLOW = 150.050432 <11> <3> /  
+V-STAGE = 16 V-MOLE-FLOW = 150.099587 <11> <3> /  V-STAGE = 17 V-MOLE-FLOW = 
+150.199863 <11> <3> /  V-STAGE = 18 V-MOLE-FLOW = 150.40045 <11> <3> /  
+V-STAGE = 19 V-MOLE-FLOW = 150.780036 <11> <3> /  V-STAGE = 20 V-MOLE-FLOW = 
+151.358265 <11> <3> /  V-STAGE = 21 V-MOLE-FLOW = 151.189041 <11> <3> /  
+V-STAGE = 22 V-MOLE-FLOW = 158.424822 <11> <3> /  V-STAGE = 23 V-MOLE-FLOW = 
+158.329163 <11> <3> /  V-STAGE = 24 V-MOLE-FLOW = 157.751905 <11> <3> /  
+V-STAGE = 25 V-MOLE-FLOW = 154.731192 <11> <3> /  V-STAGE = 26 V-MOLE-FLOW = 
+141.119787 <11> <3> /  V-STAGE = 27 V-MOLE-FLOW = 111.870291 <11> <3> /  
+V-STAGE = 28 V-MOLE-FLOW = 102.630868 <11> <3> \ \ X-EST X-STAGE = 1 X-CID = 
+"N-HEPTAN" X-EST = 0.0038551204 <0> <0> /  X-STAGE = 1 X-CID = "TOLUE-01" 
+X-EST = 0.996144804 <0> <0> /  X-STAGE = 1 X-CID = "PHENO-01" X-EST = 
+7.5975804E-08 <0> <0> /  X-STAGE = 2 X-CID = "N-HEPTAN" X-EST = 0.00249168627 
+<0> <0> /  X-STAGE = 2 X-CID = "TOLUE-01" X-EST = 0.997508131 <0> <0> /  
+X-STAGE = 2 X-CID = "PHENO-01" X-EST = 1.8269282E-07 <0> <0> /  X-STAGE = 3 
+X-CID = "N-HEPTAN" X-EST = 0.00206099418 <0> <0> /  X-STAGE = 3 X-CID = 
+"TOLUE-01" X-EST = 0.997938602 <0> <0> /  X-STAGE = 3 X-CID = "PHENO-01" 
+X-EST = 4.0364388E-07 <0> <0> /  X-STAGE = 4 X-CID = "N-HEPTAN" X-EST = 
+0.00192514223 <0> <0> /  X-STAGE = 4 X-CID = "TOLUE-01" X-EST = 0.998073997 
+<0> <0> /  X-STAGE = 4 X-CID = "PHENO-01" X-EST = 8.6114411E-07 <0> <0> /  
+X-STAGE = 5 X-CID = "N-HEPTAN" X-EST = 0.00188230997 <0> <0> /  X-STAGE = 5 
+X-CID = "TOLUE-01" X-EST = 0.998115882 <0> <0> /  X-STAGE = 5 X-CID = 
+"PHENO-01" X-EST = 1.8084701E-06 <0> <0> /  X-STAGE = 6 X-CID = "N-HEPTAN" 
+X-EST = 0.00186880619 <0> <0> /  X-STAGE = 6 X-CID = "TOLUE-01" X-EST = 
+0.998127424 <0> <0> /  X-STAGE = 6 X-CID = "PHENO-01" X-EST = 3.7700830E-06 
+<0> <0> /  X-STAGE = 7 X-CID = "N-HEPTAN" X-EST = 0.00186454629 <0> <0> /  
+X-STAGE = 7 X-CID = "TOLUE-01" X-EST = 0.998127622 <0> <0> /  X-STAGE = 7 
+X-CID = "PHENO-01" X-EST = 7.8320072E-06 <0> <0> /  X-STAGE = 8 X-CID = 
+"N-HEPTAN" X-EST = 0.00186319682 <0> <0> /  X-STAGE = 8 X-CID = "TOLUE-01" 
+X-EST = 0.99812056 <0> <0> /  X-STAGE = 8 X-CID = "PHENO-01" X-EST = 
+1.6243200E-05 <0> <0> /  X-STAGE = 9 X-CID = "N-HEPTAN" X-EST = 0.00186275761 
+<0> <0> /  X-STAGE = 9 X-CID = "TOLUE-01" X-EST = 0.998103581 <0> <0> /  
+X-STAGE = 9 X-CID = "PHENO-01" X-EST = 3.3661179E-05 <0> <0> /  X-STAGE = 10 
+X-CID = "N-HEPTAN" X-EST = 0.0018625905 <0> <0> /  X-STAGE = 10 X-CID = 
+"TOLUE-01" X-EST = 0.998067677 <0> <0> /  X-STAGE = 10 X-CID = "PHENO-01" 
+X-EST = 6.9732943E-05 <0> <0> /  X-STAGE = 11 X-CID = "N-HEPTAN" X-EST = 
+0.00186247846 <0> <0> /  X-STAGE = 11 X-CID = "TOLUE-01" X-EST = 0.997993075 
+<0> <0> /  X-STAGE = 11 X-CID = "PHENO-01" X-EST = 0.00014444625 <0> <0> /  
+X-STAGE = 12 X-CID = "N-HEPTAN" X-EST = 0.00186232019 <0> <0> /  X-STAGE = 12 
+X-CID = "TOLUE-01" X-EST = 0.997838439 <0> <0> /  X-STAGE = 12 X-CID = 
+"PHENO-01" X-EST = 0.0002992405 <0> <0> /  X-STAGE = 13 X-CID = "N-HEPTAN" 
+X-EST = 0.00186201555 <0> <0> /  X-STAGE = 13 X-CID = "TOLUE-01" X-EST = 
+0.997517841 <0> <0> /  X-STAGE = 13 X-CID = "PHENO-01" X-EST = 0.00062014296 
+<0> <0> /  X-STAGE = 14 X-CID = "N-HEPTAN" X-EST = 0.00186139136 <0> <0> /  
+X-STAGE = 14 X-CID = "TOLUE-01" X-EST = 0.996852376 <0> <0> /  X-STAGE = 14 
+X-CID = "PHENO-01" X-EST = 0.00128623255 <0> <0> /  X-STAGE = 15 X-CID = 
+"N-HEPTAN" X-EST = 0.00186009818 <0> <0> /  X-STAGE = 15 X-CID = "TOLUE-01" 
+X-EST = 0.995467509 <0> <0> /  X-STAGE = 15 X-CID = "PHENO-01" X-EST = 
+0.00267239308 <0> <0> /  X-STAGE = 16 X-CID = "N-HEPTAN" X-EST = 
+0.00185740831 <0> <0> /  X-STAGE = 16 X-CID = "TOLUE-01" X-EST = 0.992570069 
+<0> <0> /  X-STAGE = 16 X-CID = "PHENO-01" X-EST = 0.00557252278 <0> <0> /  
+X-STAGE = 17 X-CID = "N-HEPTAN" X-EST = 0.00185178398 <0> <0> /  X-STAGE = 17 
+X-CID = "TOLUE-01" X-EST = 0.986440407 <0> <0> /  X-STAGE = 17 X-CID = 
+"PHENO-01" X-EST = 0.0117078092 <0> <0> /  X-STAGE = 18 X-CID = "N-HEPTAN" 
+X-EST = 0.00183990674 <0> <0> /  X-STAGE = 18 X-CID = "TOLUE-01" X-EST = 
+0.973171697 <0> <0> /  X-STAGE = 18 X-CID = "PHENO-01" X-EST = 0.0249883967 
+<0> <0> /  X-STAGE = 19 X-CID = "N-HEPTAN" X-EST = 0.00181436963 <0> <0> /  
+X-STAGE = 19 X-CID = "TOLUE-01" X-EST = 0.943063415 <0> <0> /  X-STAGE = 19 
+X-CID = "PHENO-01" X-EST = 0.0551222158 <0> <0> /  X-STAGE = 20 X-CID = 
+"N-HEPTAN" X-EST = 0.00175825686 <0> <0> /  X-STAGE = 20 X-CID = "TOLUE-01" 
+X-EST = 0.868222061 <0> <0> /  X-STAGE = 20 X-CID = "PHENO-01" X-EST = 
+0.130019682 <0> <0> /  X-STAGE = 21 X-CID = "N-HEPTAN" X-EST = 0.00164243339 
+<0> <0> /  X-STAGE = 21 X-CID = "TOLUE-01" X-EST = 0.662042463 <0> <0> /  
+X-STAGE = 21 X-CID = "PHENO-01" X-EST = 0.336315103 <0> <0> /  X-STAGE = 22 
+X-CID = "N-HEPTAN" X-EST = 0.00095842998 <0> <0> /  X-STAGE = 22 X-CID = 
+"TOLUE-01" X-EST = 0.661561802 <0> <0> /  X-STAGE = 22 X-CID = "PHENO-01" 
+X-EST = 0.337479768 <0> <0> /  X-STAGE = 23 X-CID = "N-HEPTAN" X-EST = 
+0.00055794168 <0> <0> /  X-STAGE = 23 X-CID = "TOLUE-01" X-EST = 0.656318585 
+<0> <0> /  X-STAGE = 23 X-CID = "PHENO-01" X-EST = 0.343123473 <0> <0> /  
+X-STAGE = 24 X-CID = "N-HEPTAN" X-EST = 0.00032246115 <0> <0> /  X-STAGE = 24 
+X-CID = "TOLUE-01" X-EST = 0.62904885 <0> <0> /  X-STAGE = 24 X-CID = 
+"PHENO-01" X-EST = 0.370628689 <0> <0> /  X-STAGE = 25 X-CID = "N-HEPTAN" 
+X-EST = 0.00018133567 <0> <0> /  X-STAGE = 25 X-CID = "TOLUE-01" X-EST = 
+0.506375851 <0> <0> /  X-STAGE = 25 X-CID = "PHENO-01" X-EST = 0.493442813 
+<0> <0> /  X-STAGE = 26 X-CID = "N-HEPTAN" X-EST = 8.8130269E-05 <0> <0> /  
+X-STAGE = 26 X-CID = "TOLUE-01" X-EST = 0.204972178 <0> <0> /  X-STAGE = 26 
+X-CID = "PHENO-01" X-EST = 0.794939692 <0> <0> /  X-STAGE = 27 X-CID = 
+"N-HEPTAN" X-EST = 2.8009190E-05 <0> <0> /  X-STAGE = 27 X-CID = "TOLUE-01" 
+X-EST = 0.0431578927 <0> <0> /  X-STAGE = 27 X-CID = "PHENO-01" X-EST = 
+0.956814098 <0> <0> /  X-STAGE = 28 X-CID = "N-HEPTAN" X-EST = 5.5958509E-06 
+<0> <0> /  X-STAGE = 28 X-CID = "TOLUE-01" X-EST = 0.00650561838 <0> <0> /  
+X-STAGE = 28 X-CID = "PHENO-01" X-EST = 0.993488786 <0> <0> \ \ Y-EST Y-STAGE
+ = 1 Y-CID = "N-HEPTAN" Y-EST = 0.00815142901 <0> <0> /  Y-STAGE = 1 Y-CID = 
+"TOLUE-01" Y-EST = 0.991848547 <0> <0> /  Y-STAGE = 1 Y-CID = "PHENO-01" 
+Y-EST = 2.4425165E-08 <0> <0> /  Y-STAGE = 2 Y-CID = "N-HEPTAN" Y-EST = 
+0.00528722327 <0> <0> /  Y-STAGE = 2 Y-CID = "TOLUE-01" Y-EST = 0.994712718 
+<0> <0> /  Y-STAGE = 2 Y-CID = "PHENO-01" Y-EST = 5.8792257E-08 <0> <0> /  
+Y-STAGE = 3 Y-CID = "N-HEPTAN" Y-EST = 0.00437823226 <0> <0> /  Y-STAGE = 3 
+Y-CID = "TOLUE-01" Y-EST = 0.995621638 <0> <0> /  Y-STAGE = 3 Y-CID = 
+"PHENO-01" Y-EST = 1.2993791E-07 <0> <0> /  Y-STAGE = 4 Y-CID = "N-HEPTAN" 
+Y-EST = 0.00409108904 <0> <0> /  Y-STAGE = 4 Y-CID = "TOLUE-01" Y-EST = 
+0.995908634 <0> <0> /  Y-STAGE = 4 Y-CID = "PHENO-01" Y-EST = 2.7724076E-07 
+<0> <0> /  Y-STAGE = 5 Y-CID = "N-HEPTAN" Y-EST = 0.00400051567 <0> <0> /  
+Y-STAGE = 5 Y-CID = "TOLUE-01" Y-EST = 0.995998902 <0> <0> /  Y-STAGE = 5 
+Y-CID = "PHENO-01" Y-EST = 5.8224525E-07 <0> <0> /  Y-STAGE = 6 Y-CID = 
+"N-HEPTAN" Y-EST = 0.00397195868 <0> <0> /  Y-STAGE = 6 Y-CID = "TOLUE-01" 
+Y-EST = 0.996026828 <0> <0> /  Y-STAGE = 6 Y-CID = "PHENO-01" Y-EST = 
+1.2138048E-06 <0> <0> /  Y-STAGE = 7 Y-CID = "N-HEPTAN" Y-EST = 0.00396295463 
+<0> <0> /  Y-STAGE = 7 Y-CID = "TOLUE-01" Y-EST = 0.996034524 <0> <0> /  
+Y-STAGE = 7 Y-CID = "PHENO-01" Y-EST = 2.5215656E-06 <0> <0> /  Y-STAGE = 8 
+Y-CID = "N-HEPTAN" Y-EST = 0.00396011248 <0> <0> /  Y-STAGE = 8 Y-CID = 
+"TOLUE-01" Y-EST = 0.996034658 <0> <0> /  Y-STAGE = 8 Y-CID = "PHENO-01" 
+Y-EST = 5.2295561E-06 <0> <0> /  Y-STAGE = 9 Y-CID = "N-HEPTAN" Y-EST = 
+0.00395920851 <0> <0> /  Y-STAGE = 9 Y-CID = "TOLUE-01" Y-EST = 0.996029954 
+<0> <0> /  Y-STAGE = 9 Y-CID = "PHENO-01" Y-EST = 1.0837111E-05 <0> <0> /  
+Y-STAGE = 10 Y-CID = "N-HEPTAN" Y-EST = 0.00395890686 <0> <0> /  Y-STAGE = 10 
+Y-CID = "TOLUE-01" Y-EST = 0.996018644 <0> <0> /  Y-STAGE = 10 Y-CID = 
+"PHENO-01" Y-EST = 2.2449326E-05 <0> <0> /  Y-STAGE = 11 Y-CID = "N-HEPTAN" 
+Y-EST = 0.00395877718 <0> <0> /  Y-STAGE = 11 Y-CID = "TOLUE-01" Y-EST = 
+0.995994725 <0> <0> /  Y-STAGE = 11 Y-CID = "PHENO-01" Y-EST = 4.6497799E-05 
+<0> <0> /  Y-STAGE = 12 Y-CID = "N-HEPTAN" Y-EST = 0.00395866466 <0> <0> /  
+Y-STAGE = 12 Y-CID = "TOLUE-01" Y-EST = 0.995945027 <0> <0> /  Y-STAGE = 12 
+Y-CID = "PHENO-01" Y-EST = 9.6308644E-05 <0> <0> /  Y-STAGE = 13 Y-CID = 
+"N-HEPTAN" Y-EST = 0.00395848087 <0> <0> /  Y-STAGE = 13 Y-CID = "TOLUE-01" 
+Y-EST = 0.995842007 <0> <0> /  Y-STAGE = 13 Y-CID = "PHENO-01" Y-EST = 
+0.00019951174 <0> <0> /  Y-STAGE = 14 Y-CID = "N-HEPTAN" Y-EST = 
+0.00395811597 <0> <0> /  Y-STAGE = 14 Y-CID = "TOLUE-01" Y-EST = 0.995628411 
+<0> <0> /  Y-STAGE = 14 Y-CID = "PHENO-01" Y-EST = 0.00041347333 <0> <0> /  
+Y-STAGE = 15 Y-CID = "N-HEPTAN" Y-EST = 0.00395736588 <0> <0> /  Y-STAGE = 15 
+Y-CID = "TOLUE-01" Y-EST = 0.995184994 <0> <0> /  Y-STAGE = 15 Y-CID = 
+"PHENO-01" Y-EST = 0.00085764060 <0> <0> /  Y-STAGE = 16 Y-CID = "N-HEPTAN" 
+Y-EST = 0.00395581708 <0> <0> /  Y-STAGE = 16 Y-CID = "TOLUE-01" Y-EST = 
+0.994261988 <0> <0> /  Y-STAGE = 16 Y-CID = "PHENO-01" Y-EST = 0.00178219454 
+<0> <0> /  Y-STAGE = 17 Y-CID = "N-HEPTAN" Y-EST = 0.0039526235 <0> <0> /  
+Y-STAGE = 17 Y-CID = "TOLUE-01" Y-EST = 0.992329881 <0> <0> /  Y-STAGE = 17 
+Y-CID = "PHENO-01" Y-EST = 0.003717495 <0> <0> /  Y-STAGE = 18 Y-CID = 
+"N-HEPTAN" Y-EST = 0.00394607459 <0> <0> /  Y-STAGE = 18 Y-CID = "TOLUE-01" 
+Y-EST = 0.98823832 <0> <0> /  Y-STAGE = 18 Y-CID = "PHENO-01" Y-EST = 
+0.00781560515 <0> <0> /  Y-STAGE = 19 Y-CID = "N-HEPTAN" Y-EST = 
+0.00393286363 <0> <0> /  Y-STAGE = 19 Y-CID = "TOLUE-01" Y-EST = 0.979365106 
+<0> <0> /  Y-STAGE = 19 Y-CID = "PHENO-01" Y-EST = 0.0167020304 <0> <0> /  
+Y-STAGE = 20 Y-CID = "N-HEPTAN" Y-EST = 0.00390776684 <0> <0> /  Y-STAGE = 20 
+Y-CID = "TOLUE-01" Y-EST = 0.959179195 <0> <0> /  Y-STAGE = 20 Y-CID = 
+"PHENO-01" Y-EST = 0.0369130379 <0> <0> /  Y-STAGE = 21 Y-CID = "N-HEPTAN" 
+Y-EST = 0.00387255433 <0> <0> /  Y-STAGE = 21 Y-CID = "TOLUE-01" Y-EST = 
+0.909106798 <0> <0> /  Y-STAGE = 21 Y-CID = "PHENO-01" Y-EST = 0.0870206473 
+<0> <0> /  Y-STAGE = 22 Y-CID = "N-HEPTAN" Y-EST = 0.00226235046 <0> <0> /  
+Y-STAGE = 22 Y-CID = "TOLUE-01" Y-EST = 0.910312969 <0> <0> /  Y-STAGE = 22 
+Y-CID = "PHENO-01" Y-EST = 0.0874246803 <0> <0> /  Y-STAGE = 23 Y-CID = 
+"N-HEPTAN" Y-EST = 0.00131951348 <0> <0> /  Y-STAGE = 23 Y-CID = "TOLUE-01" 
+Y-EST = 0.909800157 <0> <0> /  Y-STAGE = 23 Y-CID = "PHENO-01" Y-EST = 
+0.0888803299 <0> <0> /  Y-STAGE = 24 Y-CID = "N-HEPTAN" Y-EST = 0.00076802312 
+<0> <0> /  Y-STAGE = 24 Y-CID = "TOLUE-01" Y-EST = 0.903471073 <0> <0> /  
+Y-STAGE = 24 Y-CID = "PHENO-01" Y-EST = 0.0957609041 <0> <0> /  Y-STAGE = 25 
+Y-CID = "N-HEPTAN" Y-EST = 0.00044533204 <0> <0> /  Y-STAGE = 25 Y-CID = 
+"TOLUE-01" Y-EST = 0.870451686 <0> <0> /  Y-STAGE = 25 Y-CID = "PHENO-01" 
+Y-EST = 0.129102982 <0> <0> /  Y-STAGE = 26 Y-CID = "N-HEPTAN" Y-EST = 
+0.00025605529 <0> <0> /  Y-STAGE = 26 Y-CID = "TOLUE-01" Y-EST = 0.718906464 
+<0> <0> /  Y-STAGE = 26 Y-CID = "PHENO-01" Y-EST = 0.28083748 <0> <0> /  
+Y-STAGE = 27 Y-CID = "N-HEPTAN" Y-EST = 0.00013239634 <0> <0> /  Y-STAGE = 27 
+Y-CID = "TOLUE-01" Y-EST = 0.311416826 <0> <0> /  Y-STAGE = 27 Y-CID = 
+"PHENO-01" Y-EST = 0.688450778 <0> <0> /  Y-STAGE = 28 Y-CID = "N-HEPTAN" 
+Y-EST = 4.1112464E-05 <0> <0> /  Y-STAGE = 28 Y-CID = "TOLUE-01" Y-EST = 
+0.0645855246 <0> <0> /  Y-STAGE = 28 Y-CID = "PHENO-01" Y-EST = 0.935373363 
+<0> <0> \ \ SPEC SPEC-NO = 1 SPEC-TYPE = "MOLE-FRAC" VALUE = 0.9 <0> <0> 
+SPEC-COMPS = ( "TOLUE-01" ) SPEC-STREAMS = ( TOLUENE ) SPEC-ACTIVE = NO 
+SPEC-DESCRIP = "Mole purity, 0.9, PRODUCT" \ \ SPEC SPEC-NO = 2 SPEC-TYPE = 
+"MOLE-FRAC" VALUE = 0.99 <0> <0> SPEC-COMPS = ( "PHENO-01" ) SPEC-STREAMS = ( 
+"LEAN-SOL" ) SPEC-ACTIVE = NO SPEC-DESCRIP = "Mole purity, 0.99, PRODUCT" \ \ 
+VARY VARY-NO = 1 VARTYPE = RR LB = 0.1 <0> <0> UB = 50. <0> <0> VARY-ACTIVE
+ = NO VARY-DESCRIP = "Reflux ratio, 0.1, 50." \ \ VARY VARY-NO = 2 VARTYPE = 
+D LB = 20. <0> <0> UB = 100. <0> <0> VARY-ACTIVE = NO VARY-DESCRIP = 
+"Distillate rate, 20., 100." \ \ "KLL-VECS" \ \ REPORT HYDRAULIC = 
+NOHYDRAULIC \ \ "TRSZ-VECS" \ \ CONVERGENCE STABLE-METH = DOGLEG \ \ 
+INTERNALS CA-OPTION = "INT-1" CA-SECNO = "CS-1" CA-ACTIVE = YES CA-STAGE1 = 2 
+CA-STAGE2 = 27 CA-P-UPDATE = NO CA-TRAYTYPE$ = SIEVE CA-NPASS$ = 4 CA-DIAM$
+ = 27.97036669 <17> <3> CA-SYSFAC$ = 1.000000000 <0> <0> CA-OVER-DSGN$ = 
+1.000000000 <0> <0> CA-WEIR-HT$ = 50.80000000 <138> <7> CA-DC-CLEAR$ = 
+38.10000000 <138> <7> CA-DC-WTOP-S$ = 1701.445123 <138> <7> CA-DC-WTOP-C$ = 
+1098.676325 <138> <7> CA-DC-WTOP-O$ = 1236.832982 <138> <7> CA-DC-WBOT-S$ = 
+1701.445123 <138> <7> CA-DC-WBOT-C$ = 1098.676325 <138> <7> CA-DC-WBOT-O$ = 
+1236.832982 <138> <7> CA-HOLE-DIAM$ = 12.70000000 <138> <7> CA-HOLE-AREA$ = 
+.1000000000 <0> <0> CA-NHOLES$ = 388042 CA-FLOOD-MET$ = GLITSCH6 
+CA-DC-OFC-LC$ = 6.416538192 <17> <3> CA-DECK-TCK$ = "10 GAUGE" PCT-FLOOD-FA$
+ = 80.00000000 <0> <0> CA-AER-MULT$ = 1.000000000 <0> <0> CA-MTRFC-COR = 
+"CHAN-FAIR-84" CA-INTFA-COR = "ZUIDERWEG-82" CA-HLDP-CORR = "BENNETT-83" 
+MAX-DC-LOAD$ = GLITSCH MAX-ACC-DP$ = .0250000000 <75> <5> MAX-PCT-DCB$ = 
+100.0000000 <0> <0> MAX-PCT-JET$ = 100.0000000 <0> <0> MAX-PCT-ENT$ = 
+10.00000000 <0> <0> MIN-WEIR-LD$ = 4.470981863 <136> <3> MAX-WEIR-LD$ = 
+117.3721131 <136> <3> MIN-PCT-DCA$ = .1000000000 <0> <0> CA-DLOWER1 = 
+1.398518335 <17> <3> CA-DLOWER2 = 3.496295836 <17> <3> CA-DUPPER1 = 
+6.992591672 <17> <3> CA-DUPPER2 = 10.48888751 <17> <3> CA-WEIRLN-SD$ = 
+13.37088307 <17> <3> CA-WEIRLN-CT$ = 27.94878035 <17> <3> CA-WEIRLN-OC$ = 
+25.45326211 <17> <3> CA-WEIRLN-OS$ = 24.17393355 <17> <3> CA-DC-BAL = YES 
+CA-PIC-SIDE$ = 0.0 <0> <0> CA-PIC-CTR$ = 0.0 <0> <0> CA-PIC-OFCIN$ = 0.0 <0> 
+<0> CA-PIC-OFCOU$ = 0.0 <0> <0> \ \ INTERNALS1 CA-OPTION1 = "INT-1" 
+CA-ACTIVE1 = YES CA-STAGE-GAP$ = 0 CA-SUMP-DIAM$ = 27.97036669 <17> <3> \ \ 
+"SS-FLOWEMBED" SSXML = ( 
+"<tffString><GroupName>边界</GroupName><TemplateName>Full</TemplateName" 
+"><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplate" 
+"GlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarch" 
+"yStreams>false</IncludesChildHierarchyStreams><CommonShellSettings>&lt" 
+";srcSettings$StreamIds=""RICH-SOL,LEAN-SOL,TOLUENE""$TemplateName=""Full""" 
+"&gt;&lt;TFFTable&gt;&lt;GeneralOptions&gt;Description,SourceAndDestina" 
+"tion,StreamClass,MaximumErrorTolerance,CostFlow,PhaseLabel,ComponentAt" 
+"tributes,ParticleSizeDistributions,Temperature,Pressure,MolarVaporFrac" 
+"tion,MolarLiquidFraction,MolarSolidFraction,MolarEnthalpy,MolarEntropy" 
+",MolarDensity,MassVaporFraction,MassLiquidFraction,MassSolidFraction,M" 
+"assEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,AverageMolecularWeigh" 
+"t,BatchProperties&lt;/GeneralOptions&gt;&lt;ScopeOptions&gt;PhasesForM" 
+"ixedSubstream,TotalStream,Substreams,MoleFlows,MassFlows,MoleFractions" 
+",MassFractions,VolumeFlows&lt;/ScopeOptions&gt;&lt;Properties&gt;&lt;P" 
+"roperty$Type=""StateConditionProperty""$EngineName=""TEMP""$/&gt;&lt;Prope" 
+"rty$Type=""StateConditionProperty""$EngineName=""PRES""$/&gt;&lt;Property$" 
+"Type=""StateConditionProperty""$EngineName=""VFRAC""$/&gt;&lt;Property$Typ" 
+"e=""StateConditionProperty""$EngineName=""LFRAC""$/&gt;&lt;Property$Type=""" 
+"StateConditionProperty""$EngineName=""SFRAC""$/&gt;&lt;Property$Type=""Sta" 
+"teConditionProperty""$EngineName=""MASSVFRA""$/&gt;&lt;Property$Type=""Sta" 
+"teConditionProperty""$EngineName=""MASSLFRA""$/&gt;&lt;Property$Type=""Sta" 
+"teConditionProperty""$EngineName=""MASSSFRA""$/&gt;&lt;Property$Type=""Sta" 
+"teConditionProperty""$EngineName=""HMX""$/&gt;&lt;Property$Type=""StateCon" 
+"ditionProperty""$EngineName=""MASSHMX""$/&gt;&lt;Property$Type=""StateCond" 
+"itionProperty""$EngineName=""SMX""$/&gt;&lt;Property$Type=""StateCondition" 
+"Property""$EngineName=""MASSSMX""$/&gt;&lt;Property$Type=""StateConditionP" 
+"roperty""$EngineName=""RHOMX""$/&gt;&lt;Property$Type=""StateConditionProp" 
+"erty""$EngineName=""MASSRHOM""$/&gt;&lt;Property$Type=""StateConditionProp" 
+"erty""$EngineName=""HFLMX""$/&gt;&lt;Property$Type=""StateConditionPropert" 
+"y""$EngineName=""MWMX""$/&gt;&lt;Property$Type=""StateConditionProperty""$E" 
+"ngineName=""MOLEFLOW""$/&gt;&lt;Property$Type=""StateConditionProperty""$E" 
+"ngineName=""MOLEFRAC""$/&gt;&lt;Property$Type=""StateConditionProperty""$E" 
+"ngineName=""MASSFLOW""$/&gt;&lt;Property$Type=""StateConditionProperty""$E" 
+"ngineName=""MASSFRAC""$/&gt;&lt;Property$Type=""StateConditionProperty""$E" 
+"ngineName=""VOLFLMX""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=" 
+"""cmole_cycle""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cmole" 
+"_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cmass_cycle""" 
+"$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""cmass_time""$/&gt;&" 
+"lt;Property$Type=""BatchProperty""$EngineName=""vol_cycle""$/&gt;&lt;Prope" 
+"rty$Type=""BatchProperty""$EngineName=""vol_time""$/&gt;&lt;Property$Type=" 
+"""BatchProperty""$EngineName=""enth_cycle""$/&gt;&lt;Property$Type=""BatchP" 
+"roperty""$EngineName=""enth_time""$/&gt;&lt;Property$Type=""BatchProperty""" 
+"$EngineName=""cycle_time""$/&gt;&lt;Property$Type=""BatchProperty""$Engine" 
+"Name=""oper_time""$/&gt;&lt;Property$Type=""BatchProperty""$EngineName=""nt" 
+"rain""$/&gt;&lt;/Properties&gt;&lt;/TFFTable&gt;&lt;/srcSettings&gt;</C" 
+"ommonShellSettings></tffString>" ) \ \ "PCKSR-VECS" \ \ UTILITIES COND-UTIL
+ = "WATER-C" REB-UTIL = "WATER-H" \ ? BLOCK RADFRAC COLUMN ? ; "METCBAR_MOLE" 
+; ; FRACT1 ; \ PARAM NSTAGE = 50 ALGORITHM = NEWTON HYDRAUL = NO MAXOL = 200 
+TOLOL = 1E-07 <0> <0> CONV-METH = OTHERS NSTAGEMAX = 51 \ \ PARAM2 STATIC-DP
+ = YES \ \ "COL-CONFIG" CONDENSER = "PARTIAL-V" CA-CONFIG = "INT-1" \ \ FEEDS 
+FEED-SID = FEED FEED-STAGE = 37 /  FEED-SID = SOLVENT FEED-STAGE = 4 \ \ 
+PRODUCTS PROD-STREAM = "RICH-SOL" PROD-STAGE = 50 PROD-PHASE = L P-S = N /  
+PROD-STREAM = C7 PROD-STAGE = 1 PROD-PHASE = V P-S = N \ \ "P-SPEC2" PRES1 = 
+1. <20> <5> \ \ "COL-SPECS" BASIS-RDV = 1.0 <0> <0> BASIS-D = 73.981 <-89> 
+<3> BASIS-RR = 4.434 <-1> <0> \ \ T-EST TEMP-STAGE = 1 TEMP-EST = 98.1181154 
+<22> <4> /  TEMP-STAGE = 2 TEMP-EST = 98.2452199 <22> <4> /  TEMP-STAGE = 3 
+TEMP-EST = 98.5473017 <22> <4> /  TEMP-STAGE = 4 TEMP-EST = 100.010289 <22> 
+<4> /  TEMP-STAGE = 5 TEMP-EST = 100.012667 <22> <4> /  TEMP-STAGE = 6 
+TEMP-EST = 100.015666 <22> <4> /  TEMP-STAGE = 7 TEMP-EST = 100.01945 <22> 
+<4> /  TEMP-STAGE = 8 TEMP-EST = 100.024221 <22> <4> /  TEMP-STAGE = 9 
+TEMP-EST = 100.030232 <22> <4> /  TEMP-STAGE = 10 TEMP-EST = 100.037802 <22> 
+<4> /  TEMP-STAGE = 11 TEMP-EST = 100.047325 <22> <4> /  TEMP-STAGE = 12 
+TEMP-EST = 100.059291 <22> <4> /  TEMP-STAGE = 13 TEMP-EST = 100.074305 <22> 
+<4> /  TEMP-STAGE = 14 TEMP-EST = 100.093113 <22> <4> /  TEMP-STAGE = 15 
+TEMP-EST = 100.116619 <22> <4> /  TEMP-STAGE = 16 TEMP-EST = 100.145918 <22> 
+<4> /  TEMP-STAGE = 17 TEMP-EST = 100.182316 <22> <4> /  TEMP-STAGE = 18 
+TEMP-EST = 100.227351 <22> <4> /  TEMP-STAGE = 19 TEMP-EST = 100.2828 <22> 
+<4> /  TEMP-STAGE = 20 TEMP-EST = 100.350673 <22> <4> /  TEMP-STAGE = 21 
+TEMP-EST = 100.433184 <22> <4> /  TEMP-STAGE = 22 TEMP-EST = 100.532692 <22> 
+<4> /  TEMP-STAGE = 23 TEMP-EST = 100.651608 <22> <4> /  TEMP-STAGE = 24 
+TEMP-EST = 100.792282 <22> <4> /  TEMP-STAGE = 25 TEMP-EST = 100.956865 <22> 
+<4> /  TEMP-STAGE = 26 TEMP-EST = 101.14718 <22> <4> /  TEMP-STAGE = 27 
+TEMP-EST = 101.364619 <22> <4> /  TEMP-STAGE = 28 TEMP-EST = 101.6101 <22> 
+<4> /  TEMP-STAGE = 29 TEMP-EST = 101.884071 <22> <4> /  TEMP-STAGE = 30 
+TEMP-EST = 102.18658 <22> <4> /  TEMP-STAGE = 31 TEMP-EST = 102.517351 <22> 
+<4> /  TEMP-STAGE = 32 TEMP-EST = 102.875801 <22> <4> /  TEMP-STAGE = 33 
+TEMP-EST = 103.260764 <22> <4> /  TEMP-STAGE = 34 TEMP-EST = 103.668582 <22> 
+<4> /  TEMP-STAGE = 35 TEMP-EST = 104.080811 <22> <4> /  TEMP-STAGE = 36 
+TEMP-EST = 104.386201 <22> <4> /  TEMP-STAGE = 37 TEMP-EST = 104.402663 <22> 
+<4> /  TEMP-STAGE = 38 TEMP-EST = 104.789224 <22> <4> /  TEMP-STAGE = 39 
+TEMP-EST = 105.298588 <22> <4> /  TEMP-STAGE = 40 TEMP-EST = 105.964024 <22> 
+<4> /  TEMP-STAGE = 41 TEMP-EST = 106.816797 <22> <4> /  TEMP-STAGE = 42 
+TEMP-EST = 107.868315 <22> <4> /  TEMP-STAGE = 43 TEMP-EST = 109.080491 <22> 
+<4> /  TEMP-STAGE = 44 TEMP-EST = 110.345378 <22> <4> /  TEMP-STAGE = 45 
+TEMP-EST = 111.51345 <22> <4> /  TEMP-STAGE = 46 TEMP-EST = 112.471413 <22> 
+<4> /  TEMP-STAGE = 47 TEMP-EST = 113.219156 <22> <4> /  TEMP-STAGE = 48 
+TEMP-EST = 113.996362 <22> <4> /  TEMP-STAGE = 49 TEMP-EST = 116.032774 <22> 
+<4> /  TEMP-STAGE = 50 TEMP-EST = 126.633731 <22> <4> \ \ L-EST L-STAGE = 1 
+L-MOLE-FLOW = 350. <11> <3> /  L-STAGE = 2 L-MOLE-FLOW = 350.444053 <11> <3> 
+/  L-STAGE = 3 L-MOLE-FLOW = 348.785321 <11> <3> /  L-STAGE = 4 L-MOLE-FLOW
+ = 406.998799 <11> <3> /  L-STAGE = 5 L-MOLE-FLOW = 407.020026 <11> <3> /  
+L-STAGE = 6 L-MOLE-FLOW = 407.046795 <11> <3> /  L-STAGE = 7 L-MOLE-FLOW = 
+407.080537 <11> <3> /  L-STAGE = 8 L-MOLE-FLOW = 407.12304 <11> <3> /  
+L-STAGE = 9 L-MOLE-FLOW = 407.176537 <11> <3> /  L-STAGE = 10 L-MOLE-FLOW = 
+407.2438 <11> <3> /  L-STAGE = 11 L-MOLE-FLOW = 407.328265 <11> <3> /  
+L-STAGE = 12 L-MOLE-FLOW = 407.434157 <11> <3> /  L-STAGE = 13 L-MOLE-FLOW = 
+407.566643 <11> <3> /  L-STAGE = 14 L-MOLE-FLOW = 407.731982 <11> <3> /  
+L-STAGE = 15 L-MOLE-FLOW = 407.937671 <11> <3> /  L-STAGE = 16 L-MOLE-FLOW = 
+408.192552 <11> <3> /  L-STAGE = 17 L-MOLE-FLOW = 408.506863 <11> <3> /  
+L-STAGE = 18 L-MOLE-FLOW = 408.892153 <11> <3> /  L-STAGE = 19 L-MOLE-FLOW = 
+409.361019 <11> <3> /  L-STAGE = 20 L-MOLE-FLOW = 409.926564 <11> <3> /  
+L-STAGE = 21 L-MOLE-FLOW = 410.601511 <11> <3> /  L-STAGE = 22 L-MOLE-FLOW = 
+411.396907 <11> <3> /  L-STAGE = 23 L-MOLE-FLOW = 412.320441 <11> <3> /  
+L-STAGE = 24 L-MOLE-FLOW = 413.374479 <11> <3> /  L-STAGE = 25 L-MOLE-FLOW = 
+414.554077 <11> <3> /  L-STAGE = 26 L-MOLE-FLOW = 415.845362 <11> <3> /  
+L-STAGE = 27 L-MOLE-FLOW = 417.224701 <11> <3> /  L-STAGE = 28 L-MOLE-FLOW = 
+418.659054 <11> <3> /  L-STAGE = 29 L-MOLE-FLOW = 420.107654 <11> <3> /  
+L-STAGE = 30 L-MOLE-FLOW = 421.524904 <11> <3> /  L-STAGE = 31 L-MOLE-FLOW = 
+422.864158 <11> <3> /  L-STAGE = 32 L-MOLE-FLOW = 424.082296 <11> <3> /  
+L-STAGE = 33 L-MOLE-FLOW = 425.147609 <11> <3> /  L-STAGE = 34 L-MOLE-FLOW = 
+426.069716 <11> <3> /  L-STAGE = 35 L-MOLE-FLOW = 427.065078 <11> <3> /  
+L-STAGE = 36 L-MOLE-FLOW = 429.102622 <11> <3> /  L-STAGE = 37 L-MOLE-FLOW = 
+481.592633 <11> <3> /  L-STAGE = 38 L-MOLE-FLOW = 481.482818 <11> <3> /  
+L-STAGE = 39 L-MOLE-FLOW = 481.192321 <11> <3> /  L-STAGE = 40 L-MOLE-FLOW = 
+480.652339 <11> <3> /  L-STAGE = 41 L-MOLE-FLOW = 479.844408 <11> <3> /  
+L-STAGE = 42 L-MOLE-FLOW = 478.869962 <11> <3> /  L-STAGE = 43 L-MOLE-FLOW = 
+477.968146 <11> <3> /  L-STAGE = 44 L-MOLE-FLOW = 477.389726 <11> <3> /  
+L-STAGE = 45 L-MOLE-FLOW = 477.206083 <11> <3> /  L-STAGE = 46 L-MOLE-FLOW = 
+477.274856 <11> <3> /  L-STAGE = 47 L-MOLE-FLOW = 477.324247 <11> <3> /  
+L-STAGE = 48 L-MOLE-FLOW = 476.556524 <11> <3> /  L-STAGE = 49 L-MOLE-FLOW = 
+467.799998 <11> <3> /  L-STAGE = 50 L-MOLE-FLOW = 110. <11> <3> \ \ V-EST 
+V-STAGE = 1 V-MOLE-FLOW = 50. <11> <3> /  V-STAGE = 2 V-MOLE-FLOW = 400. <11> 
+<3> /  V-STAGE = 3 V-MOLE-FLOW = 400.444053 <11> <3> /  V-STAGE = 4 
+V-MOLE-FLOW = 398.785321 <11> <3> /  V-STAGE = 5 V-MOLE-FLOW = 396.998799 
+<11> <3> /  V-STAGE = 6 V-MOLE-FLOW = 397.020026 <11> <3> /  V-STAGE = 7 
+V-MOLE-FLOW = 397.046795 <11> <3> /  V-STAGE = 8 V-MOLE-FLOW = 397.080537 
+<11> <3> /  V-STAGE = 9 V-MOLE-FLOW = 397.12304 <11> <3> /  V-STAGE = 10 
+V-MOLE-FLOW = 397.176537 <11> <3> /  V-STAGE = 11 V-MOLE-FLOW = 397.2438 <11> 
+<3> /  V-STAGE = 12 V-MOLE-FLOW = 397.328265 <11> <3> /  V-STAGE = 13 
+V-MOLE-FLOW = 397.434157 <11> <3> /  V-STAGE = 14 V-MOLE-FLOW = 397.566643 
+<11> <3> /  V-STAGE = 15 V-MOLE-FLOW = 397.731982 <11> <3> /  V-STAGE = 16 
+V-MOLE-FLOW = 397.937671 <11> <3> /  V-STAGE = 17 V-MOLE-FLOW = 398.192552 
+<11> <3> /  V-STAGE = 18 V-MOLE-FLOW = 398.506863 <11> <3> /  V-STAGE = 19 
+V-MOLE-FLOW = 398.892153 <11> <3> /  V-STAGE = 20 V-MOLE-FLOW = 399.361019 
+<11> <3> /  V-STAGE = 21 V-MOLE-FLOW = 399.926564 <11> <3> /  V-STAGE = 22 
+V-MOLE-FLOW = 400.601511 <11> <3> /  V-STAGE = 23 V-MOLE-FLOW = 401.396907 
+<11> <3> /  V-STAGE = 24 V-MOLE-FLOW = 402.320441 <11> <3> /  V-STAGE = 25 
+V-MOLE-FLOW = 403.374479 <11> <3> /  V-STAGE = 26 V-MOLE-FLOW = 404.554077 
+<11> <3> /  V-STAGE = 27 V-MOLE-FLOW = 405.845362 <11> <3> /  V-STAGE = 28 
+V-MOLE-FLOW = 407.224701 <11> <3> /  V-STAGE = 29 V-MOLE-FLOW = 408.659054 
+<11> <3> /  V-STAGE = 30 V-MOLE-FLOW = 410.107654 <11> <3> /  V-STAGE = 31 
+V-MOLE-FLOW = 411.524904 <11> <3> /  V-STAGE = 32 V-MOLE-FLOW = 412.864158 
+<11> <3> /  V-STAGE = 33 V-MOLE-FLOW = 414.082296 <11> <3> /  V-STAGE = 34 
+V-MOLE-FLOW = 415.147609 <11> <3> /  V-STAGE = 35 V-MOLE-FLOW = 416.069716 
+<11> <3> /  V-STAGE = 36 V-MOLE-FLOW = 417.065078 <11> <3> /  V-STAGE = 37 
+V-MOLE-FLOW = 369.102599 <11> <3> /  V-STAGE = 38 V-MOLE-FLOW = 371.592633 
+<11> <3> /  V-STAGE = 39 V-MOLE-FLOW = 371.482818 <11> <3> /  V-STAGE = 40 
+V-MOLE-FLOW = 371.192321 <11> <3> /  V-STAGE = 41 V-MOLE-FLOW = 370.652339 
+<11> <3> /  V-STAGE = 42 V-MOLE-FLOW = 369.844408 <11> <3> /  V-STAGE = 43 
+V-MOLE-FLOW = 368.869962 <11> <3> /  V-STAGE = 44 V-MOLE-FLOW = 367.968146 
+<11> <3> /  V-STAGE = 45 V-MOLE-FLOW = 367.389726 <11> <3> /  V-STAGE = 46 
+V-MOLE-FLOW = 367.206083 <11> <3> /  V-STAGE = 47 V-MOLE-FLOW = 367.274856 
+<11> <3> /  V-STAGE = 48 V-MOLE-FLOW = 367.324247 <11> <3> /  V-STAGE = 49 
+V-MOLE-FLOW = 366.556524 <11> <3> /  V-STAGE = 50 V-MOLE-FLOW = 357.799998 
+<11> <3> \ \ X-EST X-STAGE = 1 X-CID = "N-HEPTAN" X-EST = 0.986428179 <0> <0> 
+/  X-STAGE = 1 X-CID = "TOLUE-01" X-EST = 0.00040793740 <0> <0> /  X-STAGE = 
+1 X-CID = "PHENO-01" X-EST = 0.013163884 <0> <0> /  X-STAGE = 2 X-CID = 
+"N-HEPTAN" X-EST = 0.976723349 <0> <0> /  X-STAGE = 2 X-CID = "TOLUE-01" 
+X-EST = 0.00047953250 <0> <0> /  X-STAGE = 2 X-CID = "PHENO-01" X-EST = 
+0.0227971185 <0> <0> /  X-STAGE = 3 X-CID = "N-HEPTAN" X-EST = 0.954132744 
+<0> <0> /  X-STAGE = 3 X-CID = "TOLUE-01" X-EST = 0.00056758894 <0> <0> /  
+X-STAGE = 3 X-CID = "PHENO-01" X-EST = 0.0452996671 <0> <0> /  X-STAGE = 4 
+X-CID = "N-HEPTAN" X-EST = 0.813273435 <0> <0> /  X-STAGE = 4 X-CID = 
+"TOLUE-01" X-EST = 0.00066475258 <0> <0> /  X-STAGE = 4 X-CID = "PHENO-01" 
+X-EST = 0.186061813 <0> <0> /  X-STAGE = 5 X-CID = "N-HEPTAN" X-EST = 
+0.813054134 <0> <0> /  X-STAGE = 5 X-CID = "TOLUE-01" X-EST = 0.00089285779 
+<0> <0> /  X-STAGE = 5 X-CID = "PHENO-01" X-EST = 0.186053008 <0> <0> /  
+X-STAGE = 6 X-CID = "N-HEPTAN" X-EST = 0.812777406 <0> <0> /  X-STAGE = 6 
+X-CID = "TOLUE-01" X-EST = 0.00118069336 <0> <0> /  X-STAGE = 6 X-CID = 
+"PHENO-01" X-EST = 0.186041901 <0> <0> /  X-STAGE = 7 X-CID = "N-HEPTAN" 
+X-EST = 0.812428336 <0> <0> /  X-STAGE = 7 X-CID = "TOLUE-01" X-EST = 
+0.0015437676 <0> <0> /  X-STAGE = 7 X-CID = "PHENO-01" X-EST = 0.186027896 
+<0> <0> /  X-STAGE = 8 X-CID = "N-HEPTAN" X-EST = 0.811988215 <0> <0> /  
+X-STAGE = 8 X-CID = "TOLUE-01" X-EST = 0.00200153741 <0> <0> /  X-STAGE = 8 
+X-CID = "PHENO-01" X-EST = 0.186010248 <0> <0> /  X-STAGE = 9 X-CID = 
+"N-HEPTAN" X-EST = 0.811433609 <0> <0> /  X-STAGE = 9 X-CID = "TOLUE-01" 
+X-EST = 0.00257836785 <0> <0> /  X-STAGE = 9 X-CID = "PHENO-01" X-EST = 
+0.185988023 <0> <0> /  X-STAGE = 10 X-CID = "N-HEPTAN" X-EST = 0.810735239 
+<0> <0> /  X-STAGE = 10 X-CID = "TOLUE-01" X-EST = 0.00330469823 <0> <0> /  
+X-STAGE = 10 X-CID = "PHENO-01" X-EST = 0.185960063 <0> <0> /  X-STAGE = 11 
+X-CID = "N-HEPTAN" X-EST = 0.809856633 <0> <0> /  X-STAGE = 11 X-CID = 
+"TOLUE-01" X-EST = 0.00421844331 <0> <0> /  X-STAGE = 11 X-CID = "PHENO-01" 
+X-EST = 0.185924924 <0> <0> /  X-STAGE = 12 X-CID = "N-HEPTAN" X-EST = 
+0.80875252 <0> <0> /  X-STAGE = 12 X-CID = "TOLUE-01" X-EST = 0.0053666523 
+<0> <0> /  X-STAGE = 12 X-CID = "PHENO-01" X-EST = 0.185880828 <0> <0> /  
+X-STAGE = 13 X-CID = "N-HEPTAN" X-EST = 0.807366976 <0> <0> /  X-STAGE = 13 
+X-CID = "TOLUE-01" X-EST = 0.00680743468 <0> <0> /  X-STAGE = 13 X-CID = 
+"PHENO-01" X-EST = 0.18582559 <0> <0> /  X-STAGE = 14 X-CID = "N-HEPTAN" 
+X-EST = 0.805631314 <0> <0> /  X-STAGE = 14 X-CID = "TOLUE-01" X-EST = 
+0.00861213574 <0> <0> /  X-STAGE = 14 X-CID = "PHENO-01" X-EST = 0.18575655 
+<0> <0> /  X-STAGE = 15 X-CID = "N-HEPTAN" X-EST = 0.803461795 <0> <0> /  
+X-STAGE = 15 X-CID = "TOLUE-01" X-EST = 0.0108677013 <0> <0> /  X-STAGE = 15 
+X-CID = "PHENO-01" X-EST = 0.185670504 <0> <0> /  X-STAGE = 16 X-CID = 
+"N-HEPTAN" X-EST = 0.800757258 <0> <0> /  X-STAGE = 16 X-CID = "TOLUE-01" 
+X-EST = 0.013679104 <0> <0> /  X-STAGE = 16 X-CID = "PHENO-01" X-EST = 
+0.185563638 <0> <0> /  X-STAGE = 17 X-CID = "N-HEPTAN" X-EST = 0.797396899 
+<0> <0> /  X-STAGE = 17 X-CID = "TOLUE-01" X-EST = 0.0171716063 <0> <0> /  
+X-STAGE = 17 X-CID = "PHENO-01" X-EST = 0.185431495 <0> <0> /  X-STAGE = 18 
+X-CID = "N-HEPTAN" X-EST = 0.793238509 <0> <0> /  X-STAGE = 18 X-CID = 
+"TOLUE-01" X-EST = 0.0214925098 <0> <0> /  X-STAGE = 18 X-CID = "PHENO-01" 
+X-EST = 0.185268981 <0> <0> /  X-STAGE = 19 X-CID = "N-HEPTAN" X-EST = 
+0.788117662 <0> <0> /  X-STAGE = 19 X-CID = "TOLUE-01" X-EST = 0.0268118883 
+<0> <0> /  X-STAGE = 19 X-CID = "PHENO-01" X-EST = 0.18507045 <0> <0> /  
+X-STAGE = 20 X-CID = "N-HEPTAN" X-EST = 0.781848441 <0> <0> /  X-STAGE = 20 
+X-CID = "TOLUE-01" X-EST = 0.0333216569 <0> <0> /  X-STAGE = 20 X-CID = 
+"PHENO-01" X-EST = 0.184829903 <0> <0> /  X-STAGE = 21 X-CID = "N-HEPTAN" 
+X-EST = 0.774226432 <0> <0> /  X-STAGE = 21 X-CID = "TOLUE-01" X-EST = 
+0.0412322262 <0> <0> /  X-STAGE = 21 X-CID = "PHENO-01" X-EST = 0.184541342 
+<0> <0> /  X-STAGE = 22 X-CID = "N-HEPTAN" X-EST = 0.765034657 <0> <0> /  
+X-STAGE = 22 X-CID = "TOLUE-01" X-EST = 0.0507660233 <0> <0> /  X-STAGE = 22 
+X-CID = "PHENO-01" X-EST = 0.18419932 <0> <0> /  X-STAGE = 23 X-CID = 
+"N-HEPTAN" X-EST = 0.754052913 <0> <0> /  X-STAGE = 23 X-CID = "TOLUE-01" 
+X-EST = 0.0621473928 <0> <0> /  X-STAGE = 23 X-CID = "PHENO-01" X-EST = 
+0.183799694 <0> <0> /  X-STAGE = 24 X-CID = "N-HEPTAN" X-EST = 0.741070527 
+<0> <0> /  X-STAGE = 24 X-CID = "TOLUE-01" X-EST = 0.0755889153 <0> <0> /  
+X-STAGE = 24 X-CID = "PHENO-01" X-EST = 0.183340557 <0> <0> /  X-STAGE = 25 
+X-CID = "N-HEPTAN" X-EST = 0.725901794 <0> <0> /  X-STAGE = 25 X-CID = 
+"TOLUE-01" X-EST = 0.0912749557 <0> <0> /  X-STAGE = 25 X-CID = "PHENO-01" 
+X-EST = 0.182823251 <0> <0> /  X-STAGE = 26 X-CID = "N-HEPTAN" X-EST = 
+0.708402559 <0> <0> /  X-STAGE = 26 X-CID = "TOLUE-01" X-EST = 0.109344143 
+<0> <0> /  X-STAGE = 26 X-CID = "PHENO-01" X-EST = 0.182253299 <0> <0> /  
+X-STAGE = 27 X-CID = "N-HEPTAN" X-EST = 0.688485789 <0> <0> /  X-STAGE = 27 
+X-CID = "TOLUE-01" X-EST = 0.129873158 <0> <0> /  X-STAGE = 27 X-CID = 
+"PHENO-01" X-EST = 0.181641053 <0> <0> /  X-STAGE = 28 X-CID = "N-HEPTAN" 
+X-EST = 0.666133811 <0> <0> /  X-STAGE = 28 X-CID = "TOLUE-01" X-EST = 
+0.152864334 <0> <0> /  X-STAGE = 28 X-CID = "PHENO-01" X-EST = 0.181001855 
+<0> <0> /  X-STAGE = 29 X-CID = "N-HEPTAN" X-EST = 0.641405545 <0> <0> /  
+X-STAGE = 29 X-CID = "TOLUE-01" X-EST = 0.178238865 <0> <0> /  X-STAGE = 29 
+X-CID = "PHENO-01" X-EST = 0.18035559 <0> <0> /  X-STAGE = 30 X-CID = 
+"N-HEPTAN" X-EST = 0.614438345 <0> <0> /  X-STAGE = 30 X-CID = "TOLUE-01" 
+X-EST = 0.205836038 <0> <0> /  X-STAGE = 30 X-CID = "PHENO-01" X-EST = 
+0.179725617 <0> <0> /  X-STAGE = 31 X-CID = "N-HEPTAN" X-EST = 0.585445737 
+<0> <0> /  X-STAGE = 31 X-CID = "TOLUE-01" X-EST = 0.235417261 <0> <0> /  
+X-STAGE = 31 X-CID = "PHENO-01" X-EST = 0.179137002 <0> <0> /  X-STAGE = 32 
+X-CID = "N-HEPTAN" X-EST = 0.554714416 <0> <0> /  X-STAGE = 32 X-CID = 
+"TOLUE-01" X-EST = 0.266672743 <0> <0> /  X-STAGE = 32 X-CID = "PHENO-01" 
+X-EST = 0.178612841 <0> <0> /  X-STAGE = 33 X-CID = "N-HEPTAN" X-EST = 
+0.522610004 <0> <0> /  X-STAGE = 33 X-CID = "TOLUE-01" X-EST = 0.299231045 
+<0> <0> /  X-STAGE = 33 X-CID = "PHENO-01" X-EST = 0.178158951 <0> <0> /  
+X-STAGE = 34 X-CID = "N-HEPTAN" X-EST = 0.489636375 <0> <0> /  X-STAGE = 34 
+X-CID = "TOLUE-01" X-EST = 0.332693146 <0> <0> /  X-STAGE = 34 X-CID = 
+"PHENO-01" X-EST = 0.177670479 <0> <0> /  X-STAGE = 35 X-CID = "N-HEPTAN" 
+X-EST = 0.456805096 <0> <0> /  X-STAGE = 35 X-CID = "TOLUE-01" X-EST = 
+0.36686486 <0> <0> /  X-STAGE = 35 X-CID = "PHENO-01" X-EST = 0.176330044 <0> 
+<0> /  X-STAGE = 36 X-CID = "N-HEPTAN" X-EST = 0.427741283 <0> <0> /  X-STAGE
+ = 36 X-CID = "TOLUE-01" X-EST = 0.403369992 <0> <0> /  X-STAGE = 36 X-CID = 
+"PHENO-01" X-EST = 0.168888726 <0> <0> /  X-STAGE = 37 X-CID = "N-HEPTAN" 
+X-EST = 0.409623122 <0> <0> /  X-STAGE = 37 X-CID = "TOLUE-01" X-EST = 
+0.439716351 <0> <0> /  X-STAGE = 37 X-CID = "PHENO-01" X-EST = 0.150660527 
+<0> <0> /  X-STAGE = 38 X-CID = "N-HEPTAN" X-EST = 0.38146135 <0> <0> /  
+X-STAGE = 38 X-CID = "TOLUE-01" X-EST = 0.46779051 <0> <0> /  X-STAGE = 38 
+X-CID = "PHENO-01" X-EST = 0.15074814 <0> <0> /  X-STAGE = 39 X-CID = 
+"N-HEPTAN" X-EST = 0.34653898 <0> <0> /  X-STAGE = 39 X-CID = "TOLUE-01" 
+X-EST = 0.502467193 <0> <0> /  X-STAGE = 39 X-CID = "PHENO-01" X-EST = 
+0.150993827 <0> <0> /  X-STAGE = 40 X-CID = "N-HEPTAN" X-EST = 0.304478989 
+<0> <0> /  X-STAGE = 40 X-CID = "TOLUE-01" X-EST = 0.544035823 <0> <0> /  
+X-STAGE = 40 X-CID = "PHENO-01" X-EST = 0.151485188 <0> <0> /  X-STAGE = 41 
+X-CID = "N-HEPTAN" X-EST = 0.256004392 <0> <0> /  X-STAGE = 41 X-CID = 
+"TOLUE-01" X-EST = 0.591699017 <0> <0> /  X-STAGE = 41 X-CID = "PHENO-01" 
+X-EST = 0.152296591 <0> <0> /  X-STAGE = 42 X-CID = "N-HEPTAN" X-EST = 
+0.203638352 <0> <0> /  X-STAGE = 42 X-CID = "TOLUE-01" X-EST = 0.642936375 
+<0> <0> /  X-STAGE = 42 X-CID = "PHENO-01" X-EST = 0.153425273 <0> <0> /  
+X-STAGE = 43 X-CID = "N-HEPTAN" X-EST = 0.151860219 <0> <0> /  X-STAGE = 43 
+X-CID = "TOLUE-01" X-EST = 0.693403532 <0> <0> /  X-STAGE = 43 X-CID = 
+"PHENO-01" X-EST = 0.154736249 <0> <0> /  X-STAGE = 44 X-CID = "N-HEPTAN" 
+X-EST = 0.10587704 <0> <0> /  X-STAGE = 44 X-CID = "TOLUE-01" X-EST = 
+0.73811558 <0> <0> /  X-STAGE = 44 X-CID = "PHENO-01" X-EST = 0.15600738 <0> 
+<0> /  X-STAGE = 45 X-CID = "N-HEPTAN" X-EST = 0.0693722261 <0> <0> /  
+X-STAGE = 45 X-CID = "TOLUE-01" X-EST = 0.773527589 <0> <0> /  X-STAGE = 45 
+X-CID = "PHENO-01" X-EST = 0.157100185 <0> <0> /  X-STAGE = 46 X-CID = 
+"N-HEPTAN" X-EST = 0.0431551249 <0> <0> /  X-STAGE = 46 X-CID = "TOLUE-01" 
+X-EST = 0.798606936 <0> <0> /  X-STAGE = 46 X-CID = "PHENO-01" X-EST = 
+0.158237939 <0> <0> /  X-STAGE = 47 X-CID = "N-HEPTAN" X-EST = 0.025732763 
+<0> <0> /  X-STAGE = 47 X-CID = "TOLUE-01" X-EST = 0.813313655 <0> <0> /  
+X-STAGE = 47 X-CID = "PHENO-01" X-EST = 0.160953582 <0> <0> /  X-STAGE = 48 
+X-CID = "N-HEPTAN" X-EST = 0.0147385148 <0> <0> /  X-STAGE = 48 X-CID = 
+"TOLUE-01" X-EST = 0.812117122 <0> <0> /  X-STAGE = 48 X-CID = "PHENO-01" 
+X-EST = 0.173144363 <0> <0> /  X-STAGE = 49 X-CID = "N-HEPTAN" X-EST = 
+0.00795216078 <0> <0> /  X-STAGE = 49 X-CID = "TOLUE-01" X-EST = 0.755271935 
+<0> <0> /  X-STAGE = 49 X-CID = "PHENO-01" X-EST = 0.236775904 <0> <0> /  
+X-STAGE = 50 X-CID = "N-HEPTAN" X-EST = 0.00370824729 <0> <0> /  X-STAGE = 50 
+X-CID = "TOLUE-01" X-EST = 0.454388768 <0> <0> /  X-STAGE = 50 X-CID = 
+"PHENO-01" X-EST = 0.541902985 <0> <0> \ \ Y-EST Y-STAGE = 1 Y-CID = "N-HEPTAN" 
+Y-EST = 0.991841856 <0> <0> /  Y-STAGE = 1 Y-CID = "TOLUE-01" Y-EST = 
+0.00034471137 <0> <0> /  Y-STAGE = 1 Y-CID = "PHENO-01" Y-EST = 0.00781343265 
+<0> <0> /  Y-STAGE = 2 Y-CID = "N-HEPTAN" Y-EST = 0.987104888 <0> <0> /  
+Y-STAGE = 2 Y-CID = "TOLUE-01" Y-EST = 0.00040003414 <0> <0> /  Y-STAGE = 2 
+Y-CID = "PHENO-01" Y-EST = 0.0124950776 <0> <0> /  Y-STAGE = 3 Y-CID = 
+"N-HEPTAN" Y-EST = 0.978611067 <0> <0> /  Y-STAGE = 3 Y-CID = "TOLUE-01" 
+Y-EST = 0.00046269854 <0> <0> /  Y-STAGE = 3 Y-CID = "PHENO-01" Y-EST = 
+0.0209262347 <0> <0> /  Y-STAGE = 4 Y-CID = "N-HEPTAN" Y-EST = 0.95886074 <0> 
+<0> /  Y-STAGE = 4 Y-CID = "TOLUE-01" Y-EST = 0.00053964438 <0> <0> /  
+Y-STAGE = 4 Y-CID = "PHENO-01" Y-EST = 0.0405996152 <0> <0> /  Y-STAGE = 5 
+Y-CID = "N-HEPTAN" Y-EST = 0.958676462 <0> <0> /  Y-STAGE = 5 Y-CID = 
+"TOLUE-01" Y-EST = 0.00072491169 <0> <0> /  Y-STAGE = 5 Y-CID = "PHENO-01" 
+Y-EST = 0.0405986266 <0> <0> /  Y-STAGE = 6 Y-CID = "N-HEPTAN" Y-EST = 
+0.958443864 <0> <0> /  Y-STAGE = 6 Y-CID = "TOLUE-01" Y-EST = 0.00095875912 
+<0> <0> /  Y-STAGE = 6 Y-CID = "PHENO-01" Y-EST = 0.0405973769 <0> <0> /  
+Y-STAGE = 7 Y-CID = "N-HEPTAN" Y-EST = 0.958150364 <0> <0> /  Y-STAGE = 7 
+Y-CID = "TOLUE-01" Y-EST = 0.00125383966 <0> <0> /  Y-STAGE = 7 Y-CID = 
+"PHENO-01" Y-EST = 0.0405957967 <0> <0> /  Y-STAGE = 8 Y-CID = "N-HEPTAN" 
+Y-EST = 0.95778015 <0> <0> /  Y-STAGE = 8 Y-CID = "TOLUE-01" Y-EST = 
+0.00162605127 <0> <0> /  Y-STAGE = 8 Y-CID = "PHENO-01" Y-EST = 0.0405937986 
+<0> <0> /  Y-STAGE = 9 Y-CID = "N-HEPTAN" Y-EST = 0.957313389 <0> <0> /  
+Y-STAGE = 9 Y-CID = "TOLUE-01" Y-EST = 0.00209533943 <0> <0> /  Y-STAGE = 9 
+Y-CID = "PHENO-01" Y-EST = 0.0405912715 <0> <0> /  Y-STAGE = 10 Y-CID = 
+"N-HEPTAN" Y-EST = 0.956725245 <0> <0> /  Y-STAGE = 10 Y-CID = "TOLUE-01" 
+Y-EST = 0.00268668051 <0> <0> /  Y-STAGE = 10 Y-CID = "PHENO-01" Y-EST = 
+0.0405880746 <0> <0> /  Y-STAGE = 11 Y-CID = "N-HEPTAN" Y-EST = 0.955984693 
+<0> <0> /  Y-STAGE = 11 Y-CID = "TOLUE-01" Y-EST = 0.0034312768 <0> <0> /  
+Y-STAGE = 11 Y-CID = "PHENO-01" Y-EST = 0.0405840298 <0> <0> /  Y-STAGE = 12 
+Y-CID = "N-HEPTAN" Y-EST = 0.955053097 <0> <0> /  Y-STAGE = 12 Y-CID = 
+"TOLUE-01" Y-EST = 0.0043679922 <0> <0> /  Y-STAGE = 12 Y-CID = "PHENO-01" 
+Y-EST = 0.0405789108 <0> <0> /  Y-STAGE = 13 Y-CID = "N-HEPTAN" Y-EST = 
+0.953882517 <0> <0> /  Y-STAGE = 13 Y-CID = "TOLUE-01" Y-EST = 0.00554505189 
+<0> <0> /  Y-STAGE = 13 Y-CID = "PHENO-01" Y-EST = 0.0405724309 <0> <0> /  
+Y-STAGE = 14 Y-CID = "N-HEPTAN" Y-EST = 0.952413759 <0> <0> /  Y-STAGE = 14 
+Y-CID = "TOLUE-01" Y-EST = 0.00702201485 <0> <0> /  Y-STAGE = 14 Y-CID = 
+"PHENO-01" Y-EST = 0.0405642265 <0> <0> /  Y-STAGE = 15 Y-CID = "N-HEPTAN" 
+Y-EST = 0.950574161 <0> <0> /  Y-STAGE = 15 Y-CID = "TOLUE-01" Y-EST = 
+0.00887200151 <0> <0> /  Y-STAGE = 15 Y-CID = "PHENO-01" Y-EST = 0.0405538373 
+<0> <0> /  Y-STAGE = 16 Y-CID = "N-HEPTAN" Y-EST = 0.948275204 <0> <0> /  
+Y-STAGE = 16 Y-CID = "TOLUE-01" Y-EST = 0.0111841142 <0> <0> /  Y-STAGE = 16 
+Y-CID = "PHENO-01" Y-EST = 0.040540682 <0> <0> /  Y-STAGE = 17 Y-CID = 
+"N-HEPTAN" Y-EST = 0.945410052 <0> <0> /  Y-STAGE = 17 Y-CID = "TOLUE-01" 
+Y-EST = 0.0140659184 <0> <0> /  Y-STAGE = 17 Y-CID = "PHENO-01" Y-EST = 
+0.0405240293 <0> <0> /  Y-STAGE = 18 Y-CID = "N-HEPTAN" Y-EST = 0.941851279 
+<0> <0> /  Y-STAGE = 18 Y-CID = "TOLUE-01" Y-EST = 0.0176457553 <0> <0> /  
+Y-STAGE = 18 Y-CID = "PHENO-01" Y-EST = 0.0405029661 <0> <0> /  Y-STAGE = 19 
+Y-CID = "N-HEPTAN" Y-EST = 0.937449112 <0> <0> /  Y-STAGE = 19 Y-CID = 
+"TOLUE-01" Y-EST = 0.0220745234 <0> <0> /  Y-STAGE = 19 Y-CID = "PHENO-01" 
+Y-EST = 0.0404763644 <0> <0> /  Y-STAGE = 20 Y-CID = "N-HEPTAN" Y-EST = 
+0.93203073 <0> <0> /  Y-STAGE = 20 Y-CID = "TOLUE-01" Y-EST = 0.0275264159 
+<0> <0> /  Y-STAGE = 20 Y-CID = "PHENO-01" Y-EST = 0.0404428545 <0> <0> /  
+Y-STAGE = 21 Y-CID = "N-HEPTAN" Y-EST = 0.925401238 <0> <0> /  Y-STAGE = 21 
+Y-CID = "TOLUE-01" Y-EST = 0.0341979481 <0> <0> /  Y-STAGE = 21 Y-CID = 
+"PHENO-01" Y-EST = 0.0404008136 <0> <0> /  Y-STAGE = 22 Y-CID = "N-HEPTAN" 
+Y-EST = 0.917347103 <0> <0> /  Y-STAGE = 22 Y-CID = "TOLUE-01" Y-EST = 
+0.0423045083 <0> <0> /  Y-STAGE = 22 Y-CID = "PHENO-01" Y-EST = 0.0403483885 
+<0> <0> /  Y-STAGE = 23 Y-CID = "N-HEPTAN" Y-EST = 0.907642729 <0> <0> /  
+Y-STAGE = 23 Y-CID = "TOLUE-01" Y-EST = 0.0520736961 <0> <0> /  Y-STAGE = 23 
+Y-CID = "PHENO-01" Y-EST = 0.0402835745 <0> <0> /  Y-STAGE = 24 Y-CID = 
+"N-HEPTAN" Y-EST = 0.896060666 <0> <0> /  Y-STAGE = 24 Y-CID = "TOLUE-01" 
+Y-EST = 0.0637349569 <0> <0> /  Y-STAGE = 24 Y-CID = "PHENO-01" Y-EST = 
+0.0402043771 <0> <0> /  Y-STAGE = 25 Y-CID = "N-HEPTAN" Y-EST = 0.882385363 
+<0> <0> /  Y-STAGE = 25 Y-CID = "TOLUE-01" Y-EST = 0.0775055579 <0> <0> /  
+Y-STAGE = 25 Y-CID = "PHENO-01" Y-EST = 0.0401090794 <0> <0> /  Y-STAGE = 26 
+Y-CID = "N-HEPTAN" Y-EST = 0.866429634 <0> <0> /  Y-STAGE = 26 Y-CID = 
+"TOLUE-01" Y-EST = 0.0935737464 <0> <0> /  Y-STAGE = 26 Y-CID = "PHENO-01" 
+Y-EST = 0.0399966199 <0> <0> /  Y-STAGE = 27 Y-CID = "N-HEPTAN" Y-EST = 
+0.8480521 <0> <0> /  Y-STAGE = 27 Y-CID = "TOLUE-01" Y-EST = 0.112080843 <0> 
+<0> /  Y-STAGE = 27 Y-CID = "PHENO-01" Y-EST = 0.0398670579 <0> <0> /  
+Y-STAGE = 28 Y-CID = "N-HEPTAN" Y-EST = 0.827173228 <0> <0> /  Y-STAGE = 28 
+Y-CID = "TOLUE-01" Y-EST = 0.133104708 <0> <0> /  Y-STAGE = 28 Y-CID = 
+"PHENO-01" Y-EST = 0.039722064 <0> <0> /  Y-STAGE = 29 Y-CID = "N-HEPTAN" 
+Y-EST = 0.803787512 <0> <0> /  Y-STAGE = 29 Y-CID = "TOLUE-01" Y-EST = 
+0.156647142 <0> <0> /  Y-STAGE = 29 Y-CID = "PHENO-01" Y-EST = 0.0395653465 
+<0> <0> /  Y-STAGE = 30 Y-CID = "N-HEPTAN" Y-EST = 0.777970048 <0> <0> /  
+Y-STAGE = 30 Y-CID = "TOLUE-01" Y-EST = 0.18262704 <0> <0> /  Y-STAGE = 30 
+Y-CID = "PHENO-01" Y-EST = 0.0394029115 <0> <0> /  Y-STAGE = 31 Y-CID = 
+"N-HEPTAN" Y-EST = 0.749877235 <0> <0> /  Y-STAGE = 31 Y-CID = "TOLUE-01" 
+Y-EST = 0.210879708 <0> <0> /  Y-STAGE = 31 Y-CID = "PHENO-01" Y-EST = 
+0.0392430568 <0> <0> /  Y-STAGE = 32 Y-CID = "N-HEPTAN" Y-EST = 0.719743058 
+<0> <0> /  Y-STAGE = 32 Y-CID = "TOLUE-01" Y-EST = 0.241161058 <0> <0> /  
+Y-STAGE = 32 Y-CID = "PHENO-01" Y-EST = 0.0390958841 <0> <0> /  Y-STAGE = 33 
+Y-CID = "N-HEPTAN" Y-EST = 0.687874509 <0> <0> /  Y-STAGE = 33 Y-CID = 
+"TOLUE-01" Y-EST = 0.273154456 <0> <0> /  Y-STAGE = 33 Y-CID = "PHENO-01" 
+Y-EST = 0.0389710345 <0> <0> /  Y-STAGE = 34 Y-CID = "N-HEPTAN" Y-EST = 
+0.654655068 <0> <0> /  Y-STAGE = 34 Y-CID = "TOLUE-01" Y-EST = 0.306480385 
+<0> <0> /  Y-STAGE = 34 Y-CID = "PHENO-01" Y-EST = 0.0388645468 <0> <0> /  
+Y-STAGE = 35 Y-CID = "N-HEPTAN" Y-EST = 0.620596295 <0> <0> /  Y-STAGE = 35 
+Y-CID = "TOLUE-01" Y-EST = 0.340730662 <0> <0> /  Y-STAGE = 35 Y-CID = 
+"PHENO-01" Y-EST = 0.0386730433 <0> <0> /  Y-STAGE = 36 Y-CID = "N-HEPTAN" 
+Y-EST = 0.58666527 <0> <0> /  Y-STAGE = 36 Y-CID = "TOLUE-01" Y-EST = 
+0.375702531 <0> <0> /  Y-STAGE = 36 Y-CID = "PHENO-01" Y-EST = 0.0376321982 
+<0> <0> /  Y-STAGE = 37 Y-CID = "N-HEPTAN" Y-EST = 0.55864725 <0> <0> /  
+Y-STAGE = 37 Y-CID = "TOLUE-01" Y-EST = 0.406508057 <0> <0> /  Y-STAGE = 37 
+Y-CID = "PHENO-01" Y-EST = 0.0348446928 <0> <0> /  Y-STAGE = 38 Y-CID = 
+"N-HEPTAN" Y-EST = 0.529783298 <0> <0> /  Y-STAGE = 38 Y-CID = "TOLUE-01" 
+Y-EST = 0.435372977 <0> <0> /  Y-STAGE = 38 Y-CID = "PHENO-01" Y-EST = 
+0.0348437245 <0> <0> /  Y-STAGE = 39 Y-CID = "N-HEPTAN" Y-EST = 0.493318048 
+<0> <0> /  Y-STAGE = 39 Y-CID = "TOLUE-01" Y-EST = 0.471758909 <0> <0> /  
+Y-STAGE = 39 Y-CID = "PHENO-01" Y-EST = 0.0349230438 <0> <0> /  Y-STAGE = 40 
+Y-CID = "N-HEPTAN" Y-EST = 0.44813424 <0> <0> /  Y-STAGE = 40 Y-CID = 
+"TOLUE-01" Y-EST = 0.516714866 <0> <0> /  Y-STAGE = 40 Y-CID = "PHENO-01" 
+Y-EST = 0.0351508938 <0> <0> /  Y-STAGE = 41 Y-CID = "N-HEPTAN" Y-EST = 
+0.393739944 <0> <0> /  Y-STAGE = 41 Y-CID = "TOLUE-01" Y-EST = 0.570640743 
+<0> <0> /  Y-STAGE = 41 Y-CID = "PHENO-01" Y-EST = 0.0356193127 <0> <0> /  
+Y-STAGE = 42 Y-CID = "N-HEPTAN" Y-EST = 0.331042909 <0> <0> /  Y-STAGE = 42 
+Y-CID = "TOLUE-01" Y-EST = 0.632538157 <0> <0> /  Y-STAGE = 42 Y-CID = 
+"PHENO-01" Y-EST = 0.0364189338 <0> <0> /  Y-STAGE = 43 Y-CID = "N-HEPTAN" 
+Y-EST = 0.263259123 <0> <0> /  Y-STAGE = 43 Y-CID = "TOLUE-01" Y-EST = 
+0.699162794 <0> <0> /  Y-STAGE = 43 Y-CID = "PHENO-01" Y-EST = 0.037578083 
+<0> <0> /  Y-STAGE = 44 Y-CID = "N-HEPTAN" Y-EST = 0.19614861 <0> <0> /  
+Y-STAGE = 44 Y-CID = "TOLUE-01" Y-EST = 0.764854348 <0> <0> /  Y-STAGE = 44 
+Y-CID = "PHENO-01" Y-EST = 0.0389970426 <0> <0> /  Y-STAGE = 45 Y-CID = 
+"N-HEPTAN" Y-EST = 0.136467355 <0> <0> /  Y-STAGE = 45 Y-CID = "TOLUE-01" 
+Y-EST = 0.823066102 <0> <0> /  Y-STAGE = 45 Y-CID = "PHENO-01" Y-EST = 
+0.0404665429 <0> <0> /  Y-STAGE = 46 Y-CID = "N-HEPTAN" Y-EST = 0.0890424821 
+<0> <0> /  Y-STAGE = 46 Y-CID = "TOLUE-01" Y-EST = 0.869128594 <0> <0> /  
+Y-STAGE = 46 Y-CID = "PHENO-01" Y-EST = 0.0418289242 <0> <0> /  Y-STAGE = 47 
+Y-CID = "N-HEPTAN" Y-EST = 0.0549695916 <0> <0> /  Y-STAGE = 47 Y-CID = 
+"TOLUE-01" Y-EST = 0.901701384 <0> <0> /  Y-STAGE = 47 Y-CID = "PHENO-01" 
+Y-EST = 0.0433290244 <0> <0> /  Y-STAGE = 48 Y-CID = "N-HEPTAN" Y-EST = 
+0.0323282893 <0> <0> /  Y-STAGE = 48 Y-CID = "TOLUE-01" Y-EST = 0.920798358 
+<0> <0> /  Y-STAGE = 48 Y-CID = "PHENO-01" Y-EST = 0.0468733522 <0> <0> /  
+Y-STAGE = 49 Y-CID = "N-HEPTAN" Y-EST = 0.0180485894 <0> <0> /  Y-STAGE = 49 
+Y-CID = "TOLUE-01" Y-EST = 0.919467875 <0> <0> /  Y-STAGE = 49 Y-CID = 
+"PHENO-01" Y-EST = 0.0624835355 <0> <0> /  Y-STAGE = 50 Y-CID = "N-HEPTAN" 
+Y-EST = 0.00925688545 <0> <0> /  Y-STAGE = 50 Y-CID = "TOLUE-01" Y-EST = 
+0.847773748 <0> <0> /  Y-STAGE = 50 Y-CID = "PHENO-01" Y-EST = 0.142969366 
+<0> <0> \ \ SPEC SPEC-NO = 1 SPEC-TYPE = "MOLE-FRAC" VALUE = 0.99 <0> <0> 
+SPEC-COMPS = ( "N-HEPTAN" ) SPEC-STREAMS = ( C7 ) SPEC-ACTIVE = NO 
+SPEC-DESCRIP = "Mole purity, 0.99, PRODUCT" \ \ SPEC SPEC-NO = 2 SPEC-TYPE = 
+"MOLE-FRAC" VALUE = 0.99 <0> <0> SPEC-COMPS = ( "TOLUE-01" ) SPEC-STREAMS = ( 
+"RICH-SOL" ) SPEC-ACTIVE = NO SPEC-DESCRIP = "Mole purity, 0.99, PRODUCT" \ \ 
+VARY VARY-NO = 1 VARTYPE = RR LB = 0.1 <0> <0> UB = 50. <0> <0> VARY-ACTIVE
+ = NO VARY-DESCRIP = "Reflux ratio, 0.1, 50." \ \ "KLL-VECS" \ \ REPORT 
+HYDRAULIC = NOHYDRAULIC \ \ "TRSZ-VECS" \ \ CONVERGENCE STABLE-METH = DOGLEG 
+\ \ INTERNALS CA-OPTION = "INT-1" CA-SECNO = "CS-1" CA-ACTIVE = YES CA-STAGE1
+ = 2 CA-STAGE2 = 49 CA-P-UPDATE = NO CA-TRAYTYPE$ = SIEVE CA-NPASS$ = 1 
+CA-DIAM$ = 1.935869821 <17> <3> CA-SYSFAC$ = 1.000000000 <0> <0> 
+CA-OVER-DSGN$ = 1.000000000 <0> <0> CA-WEIR-HT$ = 50.80000000 <138> <7> 
+CA-DC-CLEAR$ = 38.10000000 <138> <7> CA-DC-WTOP-S$ = 302.9163649 <138> <7> 
+CA-DC-WBOT-S$ = 302.9163649 <138> <7> CA-HOLE-DIAM$ = 12.70000000 <138> <7> 
+CA-HOLE-AREA$ = .1000000000 <0> <0> CA-NHOLES$ = 1859 CA-FLOOD-MET$ = 
+GLITSCH6 CA-DECK-TCK$ = "10 GAUGE" PCT-FLOOD-FA$ = 80.00000000 <0> <0> 
+CA-AER-MULT$ = 1.000000000 <0> <0> CA-MTRFC-COR = "CHAN-FAIR-84" CA-INTFA-COR
+ = "ZUIDERWEG-82" CA-HLDP-CORR = "BENNETT-83" MAX-DC-LOAD$ = GLITSCH 
+MAX-ACC-DP$ = .0250000000 <75> <5> MAX-PCT-DCB$ = 100.0000000 <0> <0> 
+MAX-PCT-JET$ = 100.0000000 <0> <0> MAX-PCT-ENT$ = 10.00000000 <0> <0> 
+MIN-WEIR-LD$ = 4.470981863 <136> <3> MAX-WEIR-LD$ = 117.3721131 <136> <3> 
+MIN-PCT-DCA$ = .1000000000 <0> <0> CA-DLOWER1 = .0967934910 <17> <3> 
+CA-DLOWER2 = .2419837276 <17> <3> CA-DUPPER1 = .4839674553 <17> <3> 
+CA-DUPPER2 = .7259511829 <17> <3> CA-WEIRLN-SD$ = 1.406624790 <17> <3> 
+CA-DC-BAL = YES CA-PIC-SIDE$ = 0.0 <0> <0> \ \ INTERNALS1 CA-OPTION1 = "INT-1" 
+CA-ACTIVE1 = YES CA-STAGE-GAP$ = 0 CA-SUMP-DIAM$ = 1.935869821 <17> <3> \ \ 
+"SS-FLOWEMBED" SSXML = ( 
+"<tffString><GroupName>边界</GroupName><TemplateName>Full</TemplateName" 
+"><IsTemplateGroupDefaulted>false</IsTemplateGroupDefaulted><IsTemplate" 
+"GlobalDefaulted>true</IsTemplateGlobalDefaulted><IncludesChildHierarch" 
+"yStreams>false</IncludesChildHierarchyStreams></tffString>" ) \ \ "PCKSR-VECS" 
+\ \ UTILITIES COND-UTIL = "WATER-C" REB-UTIL = "WATER-H" \ ? COSTING 
+"LABOR-COST" ? ; "METCBAR_MOLE" ; ? COSTING "CAPITAL-COST" ? ; "METCBAR_MOLE" 
+; ? COSTING OPERATING ? ; "METCBAR_MOLE" ; ? COSTING PROFIT ? ; "METCBAR_MOLE" 
+; ? CURRENCY ? ? "STREAM-PRICE" ? ; "METCBAR_MOLE" ; ? UTILITY "WATER-C" ? ; 
+"METCBAR_MOLE" ; \ DESCRIPTION DESCRIPTION = 
+"冷却水，进口温度 = 20 C，出口温度 = 25 C" \ \ COST OPT-UTI-COST = 
+"PURCH-PRICE" PRICE = 0.05 <29> <4> ENERGY-PRICE = 2.12E-07 <30> <11> \ \ 
+PARAM UTILITY-TYPE = WATER COOLING-VALU = -4200. <40> <1> PRES = 1. <20> <3> 
+PRES-OUT = 1. <20> <3> TIN = 32. <22> <4> TOUT = 38. <22> <4> CALOPT = DUTY 
+MIN-TAPP = 5. <31> <4> HTC = 0.0135 <16> <15> VISCOSITY = 1. <26> <2> 
+CONDUCTIVITY = 0.603 <23> <1> DENSITY = 998. <3> <1> OPT-UTL-REQD = NO \ ? 
+UTILITY "WATER-H" ? ; "METCBAR_MOLE" ; \ DESCRIPTION DESCRIPTION = 
+"低压蒸汽，进口温度 = 125 C，出口温度 = 124 C" \ \ COST OPT-UTI-COST = 
+"PURCH-PRICE" PRICE = 39.7 <29> <4> ENERGY-PRICE = 1.9E-06 <30> <11> \ \ 
+PARAM UTILITY-TYPE = STEAM COOLING-VALU = 2776. <40> <9> TIN = 180. <22> <4> 
+TOUT = 179. <22> <4> VFRAC = 1. <0> <0> VFRAC-OUT = 0. <0> <0> CALOPT = DUTY 
+MIN-TAPP = 10. <31> <4> CALCCO2 = YES FACTORSOURCE = "US-EPA-Rule-E9-5711" 
+FUELSOURCE = "Natural_gas" CO2FACTOR = 2.34000000E-7 <129> <3> EFFICIENCY = 
+0.85 <0> <0> HTC = 0.0216 <16> <15> VISCOSITY = 0.0132 <26> <2> CONDUCTIVITY
+ = 0.027 <23> <1> DENSITY = 558. <3> <1> OPT-UTL-REQD = NO \ ? "EO-CONV-OPTI" 
+? \ DMO-PARAMS MODE = DEFAULT \ \ DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS 
+MODE = "PARAMETER-ESTIMATION" \ \ DMO-PARAMS MODE = RECONCILIATION \ \ 
+DMO-PARAMS MODE = OPTIMIZATION \ \ LSSQP-PARAMS MODE-L = DEFAULT \ \ 
+LSSQP-PARAMS MODE-L = SIMULATION \ \ LSSQP-PARAMS MODE-L = 
+"PARAMETER-ESTIMATION" \ \ LSSQP-PARAMS MODE-L = RECONCILIATION \ \ 
+LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \ \ 
+NSOLVE-PARAM NSOLVE-MODE = SIMULATION \ \ NSOLVE-PARAM NSOLVE-MODE = 
+"PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = DEFAULT \ \ XSLP-PARAMS 
+XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE = "PARAMETER-ESTIMATION" \ \ 
+XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ XSLP-PARAMS XSLP-MODE = 
+OPTIMIZATION \ ? "BATCH-OPTS" ? ; "METCBAR_MOLE" ; ? CONSTRAINT "MOLE-C7" ? ; 
+"METCBAR_MOLE" ; \ DEFINE FVN = C7 FVN-VARTYPE = "MOLE-FRAC" FVN-STREAM = C7 
+FVN-SUBS = MIXED FVN-COMPONEN = "N-HEPTAN" OPT-CATEG = STREAM \ \ SPEC EXPR1
+ = "C7" OPER = GE EXPR2 = "0.981" \ \ "TOL-SPEC" TOL = "0.001" \ ? CONSTRAINT 
+"MOLE-TOL" ? ; "METCBAR_MOLE" ; \ DEFINE FVN = TOLUE FVN-VARTYPE = "MOLE-FRAC" 
+FVN-STREAM = TOLUENE FVN-SUBS = MIXED FVN-COMPONEN = "TOLUE-01" OPT-CATEG = 
+STREAM \ \ SPEC EXPR1 = "TOLUE" OPER = GE EXPR2 = "0.981" \ \ "TOL-SPEC" TOL
+ = "0.001" \ ? OPTIMIZATION PUTIRY ? ; "METCBAR_MOLE" ; \ DEFINE FVN = E1 
+FVN-VARTYPE = "BLOCK-VAR" FVN-BLOCK = "COL-REC" FVN-VARIABLE = "COND-UTL-COS" 
+FVN-SENTENCE = UTILITIES FVN-UOM = "$/hr" OPT-CATEG = BLOCK \ \ DEFINE FVN = 
+E3 FVN-VARTYPE = "BLOCK-VAR" FVN-BLOCK = COLUMN FVN-VARIABLE = "COND-UTL-COS" 
+FVN-SENTENCE = UTILITIES FVN-UOM = "$/hr" OPT-CATEG = BLOCK \ \ DEFINE FVN = 
+E2 FVN-VARTYPE = "BLOCK-VAR" FVN-BLOCK = "COL-REC" FVN-VARIABLE = 
+"REB-UTL-COST" FVN-SENTENCE = UTILITIES FVN-UOM = "$/hr" \ \ DEFINE FVN = E4 
+FVN-VARTYPE = "BLOCK-VAR" FVN-BLOCK = COLUMN FVN-VARIABLE = "REB-UTL-COST" 
+FVN-SENTENCE = UTILITIES FVN-UOM = "$/hr" \ \ "MAX-MIN" MAX-MIN = MINIMIZE 
+EXPR1 = "E1+E2+E3+E4" \ \ CONSTRAINTS CONID = "MOLE-C7" /  CONID = "MOLE-TOL" 
+\ \ VARY SCRUD = 1 VARY-VARTYPE = "STREAM-VAR" VARYSTREAM = SOLVENT VARYSUBS
+ = MIXED VARYVARIABLE = "MOLE-FLOW" VARYUOM = "kmol/hr" LOWER = "40" UPPER = 
+"100" STEP-SIZE = 1. <0> <0> \ \ VARY SCRUD = 2 VARY-VARTYPE = "BLOCK-VAR" 
+VARYBLOCK = "COL-REC" VARYVARIABLE = "MOLE-RR" VARYSENTENCE = "COL-SPECS" 
+LOWER = "0.1" UPPER = "5" \ \ VARY SCRUD = 3 VARY-VARTYPE = "BLOCK-VAR" 
+VARYBLOCK = "COL-REC" VARYVARIABLE = "MOLE-D" VARYSENTENCE = "COL-SPECS" 
+VARYUOM = "kmol/hr" LOWER = "20" UPPER = "80" \ \ VARY SCRUD = 4 VARY-VARTYPE
+ = "BLOCK-VAR" VARYBLOCK = COLUMN VARYVARIABLE = "MOLE-RR" VARYSENTENCE = 
+"COL-SPECS" LOWER = "3" UPPER = "10" \ \ VARY SCRUD = 5 VARY-VARTYPE = 
+"BLOCK-VAR" VARYBLOCK = COLUMN VARYVARIABLE = "MOLE-D" VARYSENTENCE = 
+"COL-SPECS" VARYUOM = "kmol/hr" LOWER = "30" UPPER = "80" \ ? "CONV-OPTIONS" 
+? \ PARAM OPT-METHOD = SQP \ ? TEAR ? ? "CONV-ORDER" ? ? REPORT "BLOCK-REPORT" 
+? ? REPORT "STREAM-REPOR" ? \ OPTIONS MOLEFLOW = MOLEFLOW \ ? REPORT 
+"PROPERTY-REP" ? \ OPTIONS PCES = PCES \ ? REPORT "BATCH-OPERAT" ? ; 
+"METCBAR_MOLE" ; ? "STREAM-LIB" ? ; "METCBAR_MOLE" ; 
+
+ GRAPHICS_BACKUP
+PFS V 5.00
+$CONFIG
+paramdata APV110 ENRTL-RK
+paramdata APV110 VLE-IG
+paramdata APV110 VLE-RK
+paramdata APV110 VLE-HOC
+paramdata APV110 LLE-LIT
+paramdata APV110 LLE-ASPEN
+paramdata APV110 VLE-LIT
+paramdata APV110 BINARY
+paramdata APV110 EOS-LIT
+paramdata APV110 HENRY-AP
+paramdata APV110 SRK-ASPEN
+paramdata APV110 PC-SAFT
+paramdata APV110 POLYPCSF
+paramdata APV110 HYSYS
+paramdata APESV110 AP-EOS
+paramdata NISTV110 NIST-HOC
+paramdata NISTV110 NIST-IG
+paramdata NISTV110 NIST-RK
+paramdata NISTV110 NIST-EOS
+purebank APV110 PURE37
+purebank APV110 AQUEOUS
+purebank APV110 SOLIDS
+purebank APV110 INORGANIC
+purebank APESV110 AP-EOS
+purebank NISTV110 NIST-TRC
+regdbank 1
+ftn_check 1
+autoblockid 0
+autostreamid 0
+showblockid 1
+showstreamid 1
+autoplacement 1
+grid 0
+gridresolution 0.012500
+scale 0
+streamprefix S
+blockprefix B
+labelscale 1.000000
+3DOn 0
+qwformat %.0f
+tempformat %.0f
+presformat %.0f
+flowformat %.0f
+strmqwformat %.0f
+vflowformat %.0f
+mflowformat %.0f
+vfracformat %.2f
+pseudobatch 0
+partial 1
+animation 1
+runanyway 0
+globalqw 0
+globaltemp 0
+globalpres 0
+globalflow 0
+globalstrmqw 0
+globalvflow 0
+globalmflow 1
+globalvfrac 0
+globalshowcalcerror 1
+globalshowcalcwarning 1
+globalshowdisabled 1
+tooldrawvisible 0
+browserheight 7530
+browserwidth 10725
+browsertreewidth 2450
+polyplusenabled 1
+dynaplusenabled 1
+bfracenabled 1
+rtfenabled 1
+rspenabled 1
+initializeicarus 17
+pinchenabled 0
+linklimit 5000
+material_color 0
+material_style 0
+material_width 1
+material_termid  
+heat_color 0
+heat_style 2
+heat_width 1
+heat_termid Q
+work_color 0
+work_style 1
+work_width 1
+work_termid W
+connections_color 9
+connections_style 3
+connections_width 1
+connections_termid C
+measurements_color 4
+measurements_style 3
+measurements_width 1
+measurements_termid M
+displayeoconn 0
+displaycalcs 0
+displaytransfers 0
+displaymeas 0
+displaydesignspecs 0
+displaycalccons 0
+displaymeascons 0
+displayothercons 0
+displayeomeas 1
+displayeomeastype 2
+displayothermanipconn 0
+showeoviews 0
+eoautosave 1
+allow_system_userprops 0
+copy_estimation 1
+copy_retrieved 1
+purge_incomp_params 0
+set_default_biparams 0
+set_default_dataset1 0
+set_default_dataset0 1
+bestinput 0
+autosmrun 0
+genallpropset 0
+strmresformdefault 0
+roottype 0
+exchangerfile 1
+streamformat 1
+runsettingfile 1
+usermodelfile 1
+fortranfile 0
+timeout 1000
+auto_evaluate 0
+customglobaldatapropset1 0 | Custom1 | * | %.2f | 0 | 6
+customglobaldatapropset2 0 | Custom2 | * | %.2f | 1 | 7
+customglobaldatapropset3 0 | Custom3 | * | %.2f | 2 | 8
+customglobaldatapropset4 0 | Custom4 | * | %.2f | 4 | 9
+customglobaldatapropset5 0 | Custom5 | * | %.2f | 5 | 10
+customglobaldatapropset6 0 | Custom6 | * | %.2f | 6 | 11
+economics_active 0
+ignoreEOVarNameFixupsOnImport 1
+tpsaupgrade 1
+#
+$_APWNSHELL_SETTINGS
+<FileRootSettings><CaseFileSettings>&lt;CaseFileSettings StreamSummaryFormSettings="&amp;lt;src&amp;gt;&amp;lt;ReferencedPaths&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Results Summary&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.FEED&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.RICH-SOL&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.C7&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.TOLUENE&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.LEAN-SOL&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Streams.SOLVENT&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Blocks.COLUMN&amp;lt;/Path&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Blocks.COL-REC&amp;lt;/Path&amp;gt;&amp;lt;/ReferencedPaths&amp;gt;&amp;lt;ReferencedTemplates /&amp;gt;&amp;lt;/src&amp;gt;" xmlns="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" /&gt;</CaseFileSettings><CommonShellSettings>&lt;CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml"&gt;&lt;CommonShellSettings.CurrentWorkspace&gt;&lt;ShellWorkspace ActivationBarState="&amp;lt;DashboardPanel IsExpanded=&amp;quot;false&amp;quot; IsTurnedOff=&amp;quot;false&amp;quot; Version=&amp;quot;37&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EconomicAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Economics Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOffState Value=&amp;quot;Off&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;CapitalCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;UtilityCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD/Year&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;HasError&amp;amp;gt;false&amp;amp;lt;/HasError&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;_statusCode Value=&amp;quot;-1&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;StatusText Value=&amp;quot;&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Flags&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunCompleted Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunning Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButActivated Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButLoaded Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButSized Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButMapped Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_completeEvaluatedNotAutoRun Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isSimulationChanged Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isInStopping Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isOnOffButtonCanBeUsed Value=&amp;quot;true&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isResetDashboardButLeaveItOn Value=&amp;quot;true&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;/Flags&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EnergyAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Energy Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsExpanded&amp;amp;gt;false&amp;amp;lt;/IsExpanded&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOff&amp;amp;gt;Off&amp;amp;lt;/OnOff&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Status&amp;amp;gt;NotReady&amp;amp;lt;/Status&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;PUS&amp;amp;gt;&amp;amp;lt;/PUS&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Percent&amp;amp;gt;&amp;amp;lt;/Percent&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Units&amp;amp;gt;MW&amp;amp;lt;/Units&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EdrActivation.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;EDR&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowModelStatus&amp;amp;gt;false&amp;amp;lt;/IsShowModelStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowRiskStatus&amp;amp;gt;false&amp;amp;lt;/IsShowRiskStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowLegend&amp;amp;gt;false&amp;amp;lt;/IsShowLegend&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;DetailCount&amp;amp;gt;0&amp;amp;lt;/DetailCount&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/EDR&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/DashboardPanel&amp;gt;" Layout="&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;xamDockManager version=&amp;quot;17.2.20172.2029&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;contentPanes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2024-05-23T11:29:54.3888436Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/contentPanes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;documents splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane name=&amp;quot;Zb6f3c25a452b4d44b73f247830b06755&amp;quot; splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;tabGroup name=&amp;quot;Z2a74d19cb54a43728776002ae4867897&amp;quot; selectedIndex=&amp;quot;0&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;/tabGroup&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/documents&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/xamDockManager&amp;gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False"&gt;&lt;ShellWorkspace.Screens&gt;&lt;WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="3.920001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;/ShellWorkspace.Screens&gt;&lt;/ShellWorkspace&gt;&lt;/CommonShellSettings.CurrentWorkspace&gt;&lt;CommonShellSettings.SavedWorkspaces&gt;&lt;ShellWorkspaceFolder /&gt;&lt;/CommonShellSettings.SavedWorkspaces&gt;&lt;/CommonShellSettings&gt;</CommonShellSettings></FileRootSettings>
+$_END_APWNSHELL_SETTINGS
+#
+PFSVData
+# of PFS Objects = 9
+SIZE -3.91916 2.96209 -0.883929 2.125
+BLOCK
+ID: COLUMN
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At -1.671101 0.880514
+Label At 0.664733 0.026589
+Scale 1.000000 Modifier 0
+BLOCK
+ID: COL-REC
+Version: 1
+ICON: "FRACT1"
+Flag 0
+Section GLOBAL
+At 1.060951 0.116071
+Label At 0.578318 0.033237
+Scale 1.000000 Modifier 0
+STREAM
+ID: FEED
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 1
+At -3.919162 0.782661
+Label At 0.429201 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -3.919162 0.782661 0
+x x -2.950000 0.782661 0
+y y -2.950000 0.780514 0
+x x -2.147063 0.780514 0
+t l -1.947063 0.780514 0
+$ C 2.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: RICH-SOL
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At -0.428051 0.056245
+Label At 0.254348 0.000000
+ROUTE 0 0
+r r -0.428051 0.056245 0
+x x -0.875524 0.056245 0
+y 0 -0.875524 0.054360 0
+x x -0.975524 0.054360 0
+t r -1.075524 0.054360 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -0.428051 0.056245 0
+x x -0.128051 0.056245 0
+y y -0.128051 0.116071 0
+x x 0.734989 0.116071 0
+t l 0.834989 0.116071 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: C7
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 2
+At 0.435347 2.110272
+Label At -0.971955 0.014728
+ROUTE 0 0
+r l 0.435347 2.110272 0
+x l 0.150000 2.110272 0
+y x 0.150000 2.125000 0
+x y -1.223216 2.125000 0
+y 0 -1.223216 2.054360 0
+t u -1.223216 1.854360 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: TOLUENE
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 2
+At 2.930848 1.379320
+Label At -0.625314 0.000000
+ROUTE 0 0
+r l 2.930848 1.379320 0
+x y 1.508836 1.379320 0
+y 0 1.508836 1.289917 0
+t u 1.508836 1.089917 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: LEAN-SOL
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 2
+At 2.962086 -0.754729
+Label At -0.602498 0.000000
+ROUTE 0 0
+r l 2.962086 -0.754729 0
+x y 2.300000 -0.754729 0
+y x 2.300000 -0.710083 0
+x 0 1.856528 -0.710083 0
+t r 1.656528 -0.710083 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: SOLVENT
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 1
+At -3.919162 1.180433
+Label At 1.350314 -0.299919
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -3.919162 1.180433 0
+x x -2.925000 1.180433 0
+y y -2.925000 0.880514 0
+x x -2.097063 0.880514 0
+t l -1.897063 0.880514 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+LEGEND
+Version: 2
+Dim: -6.38152 -1.08393 -5.17839 -1.32436
+Size: 0.00462939
+Font: 1 0 =
+# of PFS Objects = 0
+VIEWPORT -5.641329 4.594250 2.855974 -1.685456
+LAYOUT
+TableFormat 1
+Pages 1 1 1 1
+PAGESETUP
+PAPERSIZE 
+PAPERSOURCE 
+ORIENTATION -1
+PRINTPAGENO 1 1
+LEFTMARGIN 0.5"
+RIGHTMARGIN 0.5"
+TOPMARGIN 0.5"
+BOTTOMMARGIN 0.5"
+VISIBILITY 0.030000
+PFDFLAG 255 255
+PFDMODE 0
+SCALE 0.004629
+$_ADS_FILE
+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
+$_END_ADS_FILE

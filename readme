@@ -1,0 +1,15 @@
+###############################################################################
+#
+# Title: A constrained black-box optimization algorithm based on Bayesian optimization with an adaptive sampling strategy
+# 
+# Author: Shuyuan Fan, Xiaodong Hong, Zuwei Liao, Congjing Ren, Yao Yang, Jingdai Wang, Yongrong Yang
+#
+###############################################################################
+
+The folder contains the python files of the four cases and the ipynb files called by each algorithm. For details of the algorithms developed in this article, see the bayes_opt_adaptive.py file. The code is developed based on the bayesian_optimization package. The link is as follows: https://github.com/fmfn/BayesianOptimization.
+
+The botorch algorithm relies on the tr_bo.py file. For specific content, please refer to: https://botorch.org/tutorials/.
+
+The python environment used and the version of each package are in the python_environment.json file.
+
+
