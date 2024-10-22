@@ -112,7 +112,7 @@ def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.7
             if max_acq is None or -np.squeeze(res.fun) >= max_acq:
                 x_max = res.x
                 max_acq = -np.squeeze(res.fun)
-    print('maxmax',constraint.predict(x_max.reshape(1, -1)),-ac(x_max.reshape(1, -1), gp=gp, y_max=y_max),max_acq,x_max)
+    # print('maxmax',constraint.predict(x_max.reshape(1, -1)),-ac(x_max.reshape(1, -1), gp=gp, y_max=y_max),max_acq,x_max)
     return np.clip(x_max, bounds[:, 0], bounds[:, 1]),constraint.predict(x_max.reshape(1, -1)),-ac(x_max.reshape(1, -1), gp=gp, y_max=y_max),max_acq
 
 class LatinHypercubeSampler:

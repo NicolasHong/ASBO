@@ -8,7 +8,6 @@ from .logger import _get_default_logger
 from .util import UtilityFunction, ensure_rng,adaptive_sampling,LatinHypercubeSampler
 from sklearn.gaussian_process.kernels import Matern
 from sklearn.gaussian_process import GaussianProcessRegressor
-import xlwt
 
 class Queue:
     def __init__(self):
@@ -259,15 +258,15 @@ class BayesianOptimization(Observable):
                                 bounds=self._space.bounds,
                                 random_state=self._random_state,
                                 hyper=p_hyper[0],dir=dir)
-            print('sub',sub_cons,sub_acq,sub_obj)
-            list_realvalue.extend([[sub_cons,sub_acq,sub_obj]])
-            f = xlwt.Workbook('encoding = utf-8')
-            sheet1 = f.add_sheet('sheet1',cell_overwrite_ok=True)
-            for i in range(len(list_realvalue)):
-                res = list_realvalue[i]
-                sheet1.write(i,0,str(res[0][0]))
-                sheet1.write(i,1,str(res[1][0]))
-                sheet1.write(i,2,str(res[2]))
+            # print('sub',sub_cons,sub_acq,sub_obj)
+            # list_realvalue.extend([[sub_cons,sub_acq,sub_obj]])
+            # f = xlwt.Workbook('encoding = utf-8')
+            # sheet1 = f.add_sheet('sheet1',cell_overwrite_ok=True)
+            # for i in range(len(list_realvalue)):
+            #     res = list_realvalue[i]
+            #     sheet1.write(i,0,str(res[0][0]))
+            #     sheet1.write(i,1,str(res[1][0]))
+            #     sheet1.write(i,2,str(res[2]))
             # f.save(dir/f'constraint.xls')
             return self._space.array_to_params(suggestion)
         else:

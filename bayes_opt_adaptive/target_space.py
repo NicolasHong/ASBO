@@ -251,7 +251,7 @@ class TargetSpace(object):
                 if proc.name() == process_name:
                     p = psutil.Process(proc.pid)
                     p.terminate()
-        kill_by_pid("AspenPlus.exe")
+        # kill_by_pid("AspenPlus.exe")
         if isinstance(params, dict):
             x = self._as_array(params)
             params = dict(zip(self._keys, x))
