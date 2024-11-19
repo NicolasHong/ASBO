@@ -8,6 +8,8 @@ from .logger import _get_default_logger
 from .util import UtilityFunction, ensure_rng,adaptive_sampling,LatinHypercubeSampler
 from sklearn.gaussian_process.kernels import Matern
 from sklearn.gaussian_process import GaussianProcessRegressor
+import pandas as pd
+import numpy as np 
 
 class Queue:
     def __init__(self):
@@ -59,7 +61,6 @@ class Observable(object):
         for _, callback in self.get_subscribers(event).items():
             callback(event, self)
 
-list_realvalue=[]
 class BayesianOptimization(Observable):
     """
     This class takes the function to optimize as well as the parameters bounds
@@ -141,6 +142,8 @@ class BayesianOptimization(Observable):
             n_restarts_optimizer=5,
             random_state=self._random_state,
         )
+        self.columns = {}
+        self.list_tp, self.list_ucb, self.list_ac = [], [], []
 
         if constraint is None:
             # Data structure containing the function to be optimized, the
@@ -233,7 +236,7 @@ class BayesianOptimization(Observable):
         )
         return suggestion, sub_cons, sub_acq, sub_obj
 
-    def suggest(self, utility_function,p_hyper,dir):
+    def suggest(self, utility_function,p_hyper,dir,strategy):
         """Most promising point to probe next"""
         if len(self._space) == 0:
             return self._space.array_to_params(self._space.random_sample())
@@ -250,24 +253,35 @@ class BayesianOptimization(Observable):
 
         if len(p_hyper)==1:
             # Finding argmin of the acquisition function.
-            suggestion,sub_cons,sub_acq,sub_obj = adaptive_sampling(ac=utility_function.utility,
+            suggestion,sub_cons,sub_ucb,sub_maxac = adaptive_sampling(ac=utility_function.utility,
                                 seed3=seed3,
                                 gp=self._gp,
                                 constraint=self.constraint,
                                 y_max=self._space.target.max(),
                                 bounds=self._space.bounds,
                                 random_state=self._random_state,
-                                hyper=p_hyper[0],dir=dir)
-            # print('sub',sub_cons,sub_acq,sub_obj)
-            # list_realvalue.extend([[sub_cons,sub_acq,sub_obj]])
-            # f = xlwt.Workbook('encoding = utf-8')
-            # sheet1 = f.add_sheet('sheet1',cell_overwrite_ok=True)
-            # for i in range(len(list_realvalue)):
-            #     res = list_realvalue[i]
-            #     sheet1.write(i,0,str(res[0][0]))
-            #     sheet1.write(i,1,str(res[1][0]))
-            #     sheet1.write(i,2,str(res[2]))
-            # f.save(dir/f'constraint.xls')
+                                hyper=p_hyper[0],dir=dir,strategy=strategy)
+            if dir !=None:
+                suggestion_length = len(suggestion)
+                for i in range(suggestion_length):
+                    column_name = f'x{i+1}'
+                    if column_name not in self.columns:
+                        self.columns[column_name] = []
+                    self.columns[column_name].append(suggestion[i])
+                
+                # Append other values that are not dynamically generated
+                self.list_tp.append(sub_cons[0])
+                self.list_ucb.append(sub_ucb[0])
+                self.list_ac.append(sub_maxac)
+                
+                # Add fixed columns to the DataFrame dictionary
+                self.columns['tp'] = self.list_tp
+                self.columns['ucb'] = self.list_ucb
+                self.columns['ac'] = self.list_ac
+
+                # Create the DataFrame with dynamically generated columns
+                df = pd.DataFrame(self.columns)
+                df.to_csv(dir, index=False)    
             return self._space.array_to_params(suggestion)
         else:
             process_num = len(p_hyper)
@@ -283,16 +297,24 @@ class BayesianOptimization(Observable):
 
             # return self._space.array_to_params(suggestion)
 
-    def _prime_queue(self, init_points):
+    def _prime_queue(self, init_points, init_points_array):
         """Make sure there's something in the queue at the very beginning."""
         if self._queue.empty and self._space.empty:
             init_points = max(init_points, 1)
 
-        if self._LHS ==True:
+        if self._LHS ==True and type(init_points_array) is not np.ndarray:
             sampler = LatinHypercubeSampler(self._pbounds, self._random_state)
             sample = sampler.sample(init_points)
             for _s in sample:
                 self._queue.add(_s)
+        elif type(init_points_array) is np.ndarray:
+            for _s in init_points_array:
+                self._queue.add(_s)
+            if init_points_array.shape[0] < init_points:
+                sampler = LatinHypercubeSampler(self._pbounds, self._random_state)
+                sample = sampler.sample(init_points-init_points_array.shape[0])
+                for _s in sample:
+                    self._queue.add(_s)                
         else:
             for _ in range(init_points):
                 self._queue.add(self._space.random_sample())
@@ -306,10 +328,12 @@ class BayesianOptimization(Observable):
 
     def maximize(self,
                  init_points=5,
+                 init_points_array=None,
                  n_iter=25,
                  p_hyper=[4, 2, 0.78, 0.95,1e-3],
                  acquisition_function=None,
                  dir = None,
+                 strategy = 123,
                  acq=None,
                  kappa=None,
                  kappa_decay=None,
@@ -340,7 +364,7 @@ class BayesianOptimization(Observable):
         """
         self._prime_subscriptions()
         self.dispatch(Events.OPTIMIZATION_START)
-        self._prime_queue(init_points)
+        self._prime_queue(init_points,init_points_array)
 
         if acquisition_function is None:
             util = UtilityFunction(kind='ucb',
@@ -357,7 +381,7 @@ class BayesianOptimization(Observable):
                 x_probe = next(self._queue)
             except StopIteration:
                 util.update_params()
-                x_probe = self.suggest(util,p_hyper,dir)
+                x_probe = self.suggest(util,p_hyper,dir,strategy)
                 iteration += 1
             self.probe(x_probe, lazy=False)
             if self._bounds_transformer and iteration > 0:
@@ -382,4 +406,3 @@ class BayesianOptimization(Observable):
     def set_gp_params(self, **params):
         """Set parameters to the internal Gaussian Process Regressor"""
         self._gp.set_params(**params)
-

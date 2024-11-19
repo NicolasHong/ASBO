@@ -3,7 +3,8 @@ import numpy as np
 from scipy.stats import norm
 from scipy.optimize import minimize
 from colorama import just_fix_windows_console
-def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.78, 0.95,1e-5], dir=None,constraint=None, n_warmup=10000):
+
+def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.78, 0.95,1e-5], strategy =123, dir=None,constraint=None, n_warmup=10000):
 
     """
     A function to find the minimum of the acquisition function
@@ -63,7 +64,14 @@ def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.7
         ac_value[mask1] = ac_predict[mask1] + 1 / (s + p_cons[mask1] ** m1)
         ac_value[mask2] = ac_predict[mask2] + 1 / (p_cons[mask2] ** m2)
         ac_value[mask3] = ac_predict[mask3]
-        return ac_value
+        if strategy == 123:
+            return ac_value
+        elif strategy == 1: 
+            return ac_predict + 1 / (s + p_cons ** m1)
+        elif strategy == 2:
+            return ac_predict + 1 / (s + p_cons ** m2)
+        elif strategy == 3:
+            return ac_predict
     # Warm up with random points
     x_tries = random_state.uniform(bounds[:, 0], bounds[:, 1],
                                    size=(n_warmup, bounds.shape[0]))
@@ -79,6 +87,7 @@ def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.7
         ys = acquisition(sample_LHS,m1=hyper[0],m2=hyper[1],p1=hyper[2],p2=hyper[3],s=hyper[4],constraint=constraint)
         x_max = sample_LHS[ys.argmin()]
         max_acq = ys.min()
+        # print('acq from random', max_acq)
         argmin_x = (ys).argsort()[:6]
         x_seeds1 = random_state.uniform(bounds[:, 0], bounds[:, 1],size=(6, bounds.shape[0]))
         x_seeds2 = sample_LHS[argmin_x]
@@ -108,6 +117,7 @@ def adaptive_sampling(ac,seed3, gp, y_max, bounds, random_state,hyper=[5, 2, 0.7
             if max_acq is None or np.squeeze(res.fun) <= max_acq:
                 x_max = res.x
                 max_acq = np.squeeze(res.fun)
+                # print('acq from minimize', max_acq)
         else:
             if max_acq is None or -np.squeeze(res.fun) >= max_acq:
                 x_max = res.x

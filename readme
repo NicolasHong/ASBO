@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Title: A constrained black-box optimization algorithm based on Bayesian optimization with an adaptive sampling strategy
+# Title: Adaptive sampling Bayesian algorithm for constrained black-box optimization problems
 # 
 # Author: Shuyuan Fan, Xiaodong Hong, Zuwei Liao, Congjing Ren, Yao Yang, Jingdai Wang, Yongrong Yang
 #
@@ -10,6 +10,11 @@ The folder contains the python files of the four cases and the ipynb files calle
 
 The botorch algorithm relies on the tr_bo.py file. For specific content, please refer to: https://botorch.org/tutorials/.
 
-The python environment used and the version of each package are in the python_environment.json file.
+The python environment used and the version of each package are in the environment.yaml file.
+
+The MATLAB scripts are from Tian H, Ierapetritou MG. A surrogate-based framework for feasibility-driven optimization of expensive simulations. AIChE Journal. 2024;70(5):e18364. doi:10.1002/aic.18364. 
+https://onlinelibrary.wiley.com/doi/abs/10.1002/aic.18364
+
+We use their algorithm to test out case studies.
 
 

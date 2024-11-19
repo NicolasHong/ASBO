@@ -1,0 +1,11 @@
+obj,x_1,x_2,x_3,x_4,x_5,initial_x1,initial_x2,initial_x3,initial_x4,initial_x5,nfev,success,message
+10000.0,73.0,37.5,8.25,77.0,4.755,73.0,37.5,8.25,77.0,4.755,6,False,Positive directional derivative for linesearch
+10000.0,67.0,62.5,7.549999999999999,41.0,0.8350000000000001,67.0,62.5,7.549999999999999,41.0,0.8350000000000001,6,False,Positive directional derivative for linesearch
+621.5777889,61.0,57.5,9.65,23.0,4.265000000000001,61.0,57.5,9.65,23.0,4.265000000000001,6,False,Positive directional derivative for linesearch
+194.51718225,79.0,52.5,3.35,35.0,0.34500000000000003,79.0,52.5,3.35,35.0,0.34500000000000003,6,False,Positive directional derivative for linesearch
+10000.0,55.0,42.5,5.449999999999999,59.0,1.3250000000000002,55.0,42.5,5.449999999999999,59.0,1.3250000000000002,6,False,Positive directional derivative for linesearch
+10000.0,43.0,67.5,6.85,65.0,2.7950000000000004,43.0,67.5,6.85,65.0,2.7950000000000004,6,False,Positive directional derivative for linesearch
+10000.0,49.0,72.5,4.050000000000001,53.0,2.305,49.0,72.5,4.050000000000001,53.0,2.305,6,False,Positive directional derivative for linesearch
+242.9095663,85.0,32.5,6.15,29.0,1.8150000000000002,85.0,32.5,6.15,29.0,1.8150000000000002,6,False,Positive directional derivative for linesearch
+10000.0,91.0,47.5,4.75,71.0,3.285,91.0,47.5,4.75,71.0,3.285,6,False,Positive directional derivative for linesearch
+10000.0,97.0,77.5,8.95,47.0,3.7750000000000004,97.0,77.5,8.95,47.0,3.7750000000000004,6,False,Positive directional derivative for linesearch
