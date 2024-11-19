@@ -8,7 +8,7 @@
 **/__pycache__ 
 # ignore /__pycache__  a/__pycache__ a/b/__pycache__
 
-*.png 
+# *.png 
 # ignore all .png file
 
 *.DS_Store 
