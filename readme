@@ -4,6 +4,8 @@
 # 
 # Author: Shuyuan Fan, Xiaodong Hong, Zuwei Liao, Congjing Ren, Yao Yang, Jingdai Wang, Yongrong Yang
 #
+# https://aiche.onlinelibrary.wiley.com/doi/10.1002/aic.18715
+#
 ###############################################################################
 
 The folder contains the python files of the four cases and the ipynb files called by each algorithm. For details of the algorithms developed in this article, see the bayes_opt_adaptive.py file. The code is developed based on the bayesian_optimization package. The link is as follows: https://github.com/fmfn/BayesianOptimization.
